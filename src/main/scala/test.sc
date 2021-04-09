@@ -5,8 +5,8 @@ cell1.x
 cell1.y
 
 case class Field(cells: Array[Cell]) {
-  val width = 1
-  val height = 1
+  val width = 2
+  val height = 2
   def widthandHeightisset: Boolean = width != 0 & height != 0
 
   override def toString: String = {
