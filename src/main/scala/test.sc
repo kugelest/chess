@@ -5,6 +5,10 @@ cell1.x
 cell1.y
 
 case class Field(cells: Array[Cell]) {
+  val width = 1
+  val height = 1
+  def widthandHeightisset: Boolean = width != 0 & height != 0
+
   override def toString: String = {
     """RNBQKBNR
       |PPPPPPPP
@@ -32,4 +36,3 @@ case class Player(color: String) {
 val player1 = Player("white")
 val player2 = Player("black")
 player1
-
