@@ -4,7 +4,7 @@ case class PlayGround(len: Integer = 8) {
 
 
   override def toString: String =  {
-    val label = "  A B C D E F G H"
+    val label = "= A B C D E F G H ="
     label + "\n" + vec.zipWithIndex.map(k => len-k._2 + " " + k._1.mkString(" ") + " " + (len-k._2)).mkString("\n") + "\n" + label
   }
 }
