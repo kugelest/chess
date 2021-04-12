@@ -13,9 +13,7 @@ case class PlayGround(len: Int = 8) {
   override def toString: String =  {
 
     val labelStr = String.format("%" + (len*2+3) + "s\n\n", files.mkString(" "))
-//    val fieldStr = vec.mk
-    val fieldStr = vec.zipWithIndex.map(k => String.format("%-4d%s%4d", len-k._2, k._1.mkString(" "), len-k._2)).mkString("\n")
-    labelStr + fieldStr + "\n\n" + labelStr
+    vec.map(row => row.mkString(f"${row.head.rank}%-4d", " ", f"${row.head.rank}%4d")).mkString(labelStr, "\n", s"\n\n$labelStr")
   }
 }
 
