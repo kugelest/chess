@@ -1,14 +1,10 @@
-case class Square(file: Char, rank: Int, value: Char = '-') {
-  override def toString: String = {
-    value.toString
-  }
-}
+package model
 
 case class Board(squares: Vector[Vector[Square]]) {
   def this(len: Int = 8) = {
     this(Vector.tabulate(len, len)((i, k) => Square(('A'+k).toChar, len-i)))
   }
-  val len = squares.length
+  val len: Int = squares.length
 
 
 
@@ -51,6 +47,7 @@ case class Board(squares: Vector[Vector[Square]]) {
         .setPiece('F', 7, 'p')
         .setPiece('G', 7, 'p')
         .setPiece('H', 7, 'p')
+
   }
 
   override def toString: String =  {
@@ -59,6 +56,3 @@ case class Board(squares: Vector[Vector[Square]]) {
     ranksAndSquaresStr.mkString(filesStr, "\n", s"\n\n$filesStr")
   }
 }
-
-val board = new Board()
-val board2 = board.startPosition()
