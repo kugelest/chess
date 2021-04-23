@@ -2,51 +2,51 @@ package model
 
 case class Board(squares: Vector[Vector[Square]]) {
   def this(len: Int = 8) = {
-    this(Vector.tabulate(len, len)((i, k) => Square(('A'+k).toChar, len-i)))
+    this(Vector.tabulate(len, len)((i, k) => Square(('A'+k).toChar, len-i, None)))
   }
   val len: Int = squares.length
 
 
 
-  def setPiece(file: Char, rank: Int, piece: Char): Board = {
-    copy(squares.updated(len-rank, squares(len-rank).updated(file-'A', Square(file, rank, piece)) ))
+  def setPiece(file: Char, rank: Int, piece: Piece): Board = {
+    copy(squares.updated(len-rank, squares(len-rank).updated(file-'A', Square(file, rank, Some(piece)))))
   }
 
   def startPosition(): Board = {
       //white
-      this.setPiece('A', 1, 0x265C)
-        .setPiece('B', 1, 0x265E)
-        .setPiece('C', 1, 0x265D)
-        .setPiece('D', 1, 0x265B)
-        .setPiece('E', 1, 0x265A)
-        .setPiece('F', 1, 0x265D)
-        .setPiece('G', 1, 0x265E)
-        .setPiece('H', 1, 0x265C)
-        .setPiece('A', 2, 0x265F)
-        .setPiece('B', 2, 0x265F)
-        .setPiece('C', 2, 0x265F)
-        .setPiece('D', 2, 0x265F)
-        .setPiece('E', 2, 0x265F)
-        .setPiece('F', 2, 0x265F)
-        .setPiece('G', 2, 0x265F)
-        .setPiece('H', 2, 0x265F)
+      this.setPiece('A', 1, Rook('w'))
+        .setPiece('B', 1, Knight('w'))
+        .setPiece('C', 1, Bishop('w'))
+        .setPiece('D', 1, Queen('w'))
+        .setPiece('E', 1, King('w'))
+        .setPiece('F', 1, Bishop('w'))
+        .setPiece('G', 1, Knight('w'))
+        .setPiece('H', 1, Rook('w'))
+        .setPiece('A', 2, Pawn('w'))
+        .setPiece('B', 2, Pawn('w'))
+        .setPiece('C', 2, Pawn('w'))
+        .setPiece('D', 2, Pawn('w'))
+        .setPiece('E', 2, Pawn('w'))
+        .setPiece('F', 2, Pawn('w'))
+        .setPiece('G', 2, Pawn('w'))
+        .setPiece('H', 2, Pawn('w'))
       //black
-        .setPiece('A', 8, 0x2656)
-        .setPiece('B', 8, 0x2658)
-        .setPiece('C', 8, 0x2657)
-        .setPiece('D', 8, 0x2655)
-        .setPiece('E', 8, 0x2654)
-        .setPiece('F', 8, 0x2657)
-        .setPiece('G', 8, 0x2658)
-        .setPiece('H', 8, 0x2656)
-        .setPiece('A', 7, 0x2659)
-        .setPiece('B', 7, 0x2659)
-        .setPiece('C', 7, 0x2659)
-        .setPiece('D', 7, 0x2659)
-        .setPiece('E', 7, 0x2659)
-        .setPiece('F', 7, 0x2659)
-        .setPiece('G', 7, 0x2659)
-        .setPiece('H', 7, 0x2659)
+        .setPiece('A', 8, Rook('b'))
+        .setPiece('B', 8, Knight('b'))
+        .setPiece('C', 8, Bishop('b'))
+        .setPiece('D', 8, Queen('b'))
+        .setPiece('E', 8, King('b'))
+        .setPiece('F', 8, Bishop('b'))
+        .setPiece('G', 8, Knight('b'))
+        .setPiece('H', 8, Rook('b'))
+        .setPiece('A', 7, Pawn('b'))
+        .setPiece('B', 7, Pawn('b'))
+        .setPiece('C', 7, Pawn('b'))
+        .setPiece('D', 7, Pawn('b'))
+        .setPiece('E', 7, Pawn('b'))
+        .setPiece('F', 7, Pawn('b'))
+        .setPiece('G', 7, Pawn('b'))
+        .setPiece('H', 7, Pawn('b'))
 
   }
 
