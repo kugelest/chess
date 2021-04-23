@@ -4,9 +4,10 @@ object Chess {
   def main(args: Array[String]): Unit = {
     println("Chess")
 
-    val board = new Board()
-    val board2 = board.startPosition()
-    println(board2)
+    var board = new Board()
+    board = board.startPosition()
+    board = board.removePiece("a1")
+    println(board)
 
   }
 }
