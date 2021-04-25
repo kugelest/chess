@@ -1,12 +1,18 @@
 package model
 
-case class Board(squares: Vector[Vector[Square]]) {
+case class Board(squares: Vector[Vector[Square]], turn: Char) {
   def this(len: Int = 8) = {
-    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)))
+    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)), 'w')
   }
   val len: Int = squares.length
 
 
+
+  def getPiece(coord: String): Option[Piece] = {
+    val file = coord.charAt(0)
+    val rank = coord.charAt(1).asDigit
+    squares(len-rank)(file-'a').value
+  }
 
   def setPiece(coord: String, piece: Piece): Board = {
 
@@ -20,6 +26,7 @@ case class Board(squares: Vector[Vector[Square]]) {
     val rank = coord.charAt(1).asDigit
     copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, None))))
   }
+
 
 
   def startPosition(): Board = {
