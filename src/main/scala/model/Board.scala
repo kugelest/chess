@@ -6,8 +6,6 @@ case class Board(squares: Vector[Vector[Square]]) {
   }
   val len: Int = squares.length
 
-
-
   def setPiece(file: Char, rank: Int, piece: Char): Board = {
     copy(squares.updated(len-rank, squares(len-rank).updated(file-'A', Square(file, rank, piece)) ))
   }
@@ -47,7 +45,6 @@ case class Board(squares: Vector[Vector[Square]]) {
         .setPiece('F', 7, 'p')
         .setPiece('G', 7, 'p')
         .setPiece('H', 7, 'p')
-
   }
 
   override def toString: String =  {
