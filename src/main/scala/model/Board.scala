@@ -29,7 +29,7 @@ case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
   }
 
   def move(from: String, to: String): Board = {
-    getSquare(from).getPiece() match {
+    getSquare(from).getPiece match {
       case Some(piece) => piece.move(to, this)
       case None => this
     }
