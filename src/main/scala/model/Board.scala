@@ -8,10 +8,11 @@ case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
 
 
 
-  def getPiece(pos: String): Option[Piece] = {
+
+  def getSquare(pos: String): Square = {
     val file = pos.charAt(0)
     val rank = pos.charAt(1).asDigit
-    squares(len-rank)(file-'a').value
+    squares(len-rank)(file-'a')
   }
 
   def setPiece(piece: Piece): Board = {
@@ -28,11 +29,13 @@ case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
   }
 
   def move(from: String, to: String): Board = {
-    getPiece(from) match {
+    getSquare(from).getPiece() match {
       case Some(piece) => piece.move(to, this)
       case None => this
     }
   }
+
+
 
   def startPosition(): Board = {
       //white

@@ -7,22 +7,19 @@ case class Pawn(pos: String, color: Char) extends Piece {
 //  }
 
   def move(to: String, board: Board): Board = {
-    val Current_file = pos.charAt(0)
-    val Current_rank = pos.charAt(1).asDigit
-    to.charAt(0) match {
-      case Current_file => color match {
-        case 'w' => to.charAt(1).asDigit - 1 match {
-          case Current_rank =>  board.removePiece(pos).setPiece(Pawn(to, color))
-          case _ => board
-        }
-        case 'b' => to.charAt(1).asDigit + 1 match {
-          case Current_rank => board.removePiece(pos).setPiece(Pawn(to, color))
-          case _ => board
-        }
-        case _ => board
-      }
-      case _ => board
-    }
+    val destFile = to.charAt(0)
+    val destRank = to.charAt(1).asDigit
+    val origFile = pos.charAt(0)
+    val origRank = pos.charAt(1).asDigit
+
+    if (color.equals('w') && destFile.equals(origFile) && destRank.equals(origRank + 1) && board.getSquare(to).isFree()
+      ||color.equals('w') && destFile.equals((origFile+1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()
+      ||color.equals('w') && destFile.equals((origFile-1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()
+      ||color.equals('b') && destFile.equals(origFile) && destRank.equals(origRank - 1) && board.getSquare(to).isFree()
+      ||color.equals('b') && destFile.equals((origFile+1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()
+      ||color.equals('b') && destFile.equals((origFile-1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()) {
+      board.removePiece(pos).setPiece(Pawn(to, color))
+    } else board
   }
 
   override def toString: String = {

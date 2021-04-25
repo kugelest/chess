@@ -12,7 +12,9 @@ object Chess {
     board = board.move("b3", "b4")
     board = board.move("b4", "b5")
     board = board.move("b5", "b6")
-    board = board.move("b6", "b7")
+    board = board.move("a7", "b6")
+    board = board.move("b7", "b6")
+    board = board.move("c2", "c4")
 
     println(board)
 
