@@ -1,50 +1,78 @@
 package model
 
-case class Board(squares: Vector[Vector[Square]]) {
+case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
   def this(len: Int = 8) = {
-    this(Vector.tabulate(len, len)((i, k) => Square(('A'+k).toChar, len-i)))
+    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)), 'w')
   }
   val len: Int = squares.length
 
-  def setPiece(file: Char, rank: Int, piece: Char): Board = {
-    copy(squares.updated(len-rank, squares(len-rank).updated(file-'A', Square(file, rank, piece)) ))
+
+
+
+  def getSquare(pos: String): Square = {
+    val file = pos.charAt(0)
+    val rank = pos.charAt(1).asDigit
+    squares(len-rank)(file-'a')
   }
+
+  def setPiece(piece: Piece): Board = {
+
+    val file = piece.pos.charAt(0)
+    val rank = piece.pos.charAt(1).asDigit
+    copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, Some(piece)))))
+  }
+
+  def removePiece(pos: String): Board = {
+    val file = pos.charAt(0)
+    val rank = pos.charAt(1).asDigit
+    copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, None))))
+  }
+
+  def move(from: String, to: String): Board = {
+    getSquare(from).getPiece match {
+      case Some(piece) => piece.move(to, this)
+      case None => this
+    }
+  }
+
+
 
   def startPosition(): Board = {
       //white
-      this.setPiece('A', 1, 'R')
-        .setPiece('B', 1, 'N')
-        .setPiece('C', 1, 'B')
-        .setPiece('D', 1, 'Q')
-        .setPiece('E', 1, 'K')
-        .setPiece('F', 1, 'B')
-        .setPiece('G', 1, 'N')
-        .setPiece('H', 1, 'R')
-        .setPiece('A', 2, 'P')
-        .setPiece('B', 2, 'P')
-        .setPiece('C', 2, 'P')
-        .setPiece('D', 2, 'P')
-        .setPiece('E', 2, 'P')
-        .setPiece('F', 2, 'P')
-        .setPiece('G', 2, 'P')
-        .setPiece('H', 2, 'P')
+      this.setPiece(Rook("a1", 'w'))
+        .setPiece(Knight("b1", 'w'))
+        .setPiece(Bishop("c1", 'w'))
+        .setPiece(Queen("d1", 'w'))
+        .setPiece(King("e1", 'w'))
+        .setPiece(Bishop("f1", 'w'))
+        .setPiece(Knight("g1", 'w'))
+        .setPiece(Rook("h1", 'w'))
+        .setPiece(Pawn("a2", 'w'))
+        .setPiece(Pawn("b2", 'w'))
+        .setPiece(Pawn("c2", 'w'))
+        .setPiece(Pawn("d2", 'w'))
+        .setPiece(Pawn("e2", 'w'))
+        .setPiece(Pawn("f2", 'w'))
+        .setPiece(Pawn("g2", 'w'))
+        .setPiece(Pawn("h2", 'w'))
       //black
-        .setPiece('A', 8, 'r')
-        .setPiece('B', 8, 'n')
-        .setPiece('C', 8, 'b')
-        .setPiece('D', 8, 'q')
-        .setPiece('E', 8, 'k')
-        .setPiece('F', 8, 'b')
-        .setPiece('G', 8, 'n')
-        .setPiece('H', 8, 'r')
-        .setPiece('A', 7, 'p')
-        .setPiece('B', 7, 'p')
-        .setPiece('C', 7, 'p')
-        .setPiece('D', 7, 'p')
-        .setPiece('E', 7, 'p')
-        .setPiece('F', 7, 'p')
-        .setPiece('G', 7, 'p')
-        .setPiece('H', 7, 'p')
+        .setPiece(Rook("a8", 'b'))
+        .setPiece(Knight("b8", 'b'))
+        .setPiece(Bishop("c8", 'b'))
+        .setPiece(Queen("d8", 'b'))
+        .setPiece(King("e8", 'b'))
+        .setPiece(Bishop("f8", 'b'))
+        .setPiece(Knight("g8", 'b'))
+        .setPiece(Rook("h8", 'b'))
+        .setPiece(Pawn("a7", 'b'))
+        .setPiece(Pawn("b7", 'b'))
+        .setPiece(Pawn("c7", 'b'))
+        .setPiece(Pawn("d7", 'b'))
+        .setPiece(Pawn("e7", 'b'))
+        .setPiece(Pawn("f7", 'b'))
+        .setPiece(Pawn("g7", 'b'))
+        .setPiece(Pawn("h7", 'b'))
+
   }
 
   override def toString: String =  {
