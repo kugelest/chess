@@ -3,7 +3,7 @@ package model
 case class Queen(pos: String, color: Char) extends Piece {
 
   def move(to: String, board: Board): Board = {
-    board.removePiece(pos).setPiece(to, Queen(to, color))
+    board.removePiece(pos).setPiece(Queen(to, color))
   }
 
   override def toString: String = {

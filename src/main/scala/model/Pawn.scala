@@ -12,11 +12,11 @@ case class Pawn(pos: String, color: Char) extends Piece {
     to.charAt(0) match {
       case Current_file => color match {
         case 'w' => to.charAt(1).asDigit - 1 match {
-          case Current_rank => board.removePiece(pos).setPiece(to, Pawn(to, color))
+          case Current_rank =>  board.removePiece(pos).setPiece(Pawn(to, color))
           case _ => board
         }
         case 'b' => to.charAt(1).asDigit + 1 match {
-          case Current_rank => board.removePiece(pos).setPiece(to, Pawn(to, color))
+          case Current_rank => board.removePiece(pos).setPiece(Pawn(to, color))
           case _ => board
         }
         case _ => board

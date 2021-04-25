@@ -1,6 +1,6 @@
 package model
 
-case class Board(squares: Vector[Vector[Square]], turn: Char) {
+case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
   def this(len: Int = 8) = {
     this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)), 'w')
   }
@@ -14,10 +14,10 @@ case class Board(squares: Vector[Vector[Square]], turn: Char) {
     squares(len-rank)(file-'a').value
   }
 
-  def setPiece(pos: String, piece: Piece): Board = {
+  def setPiece(piece: Piece): Board = {
 
-    val file = pos.charAt(0)
-    val rank = pos.charAt(1).asDigit
+    val file = piece.pos.charAt(0)
+    val rank = piece.pos.charAt(1).asDigit
     copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, Some(piece)))))
   }
 
@@ -36,39 +36,39 @@ case class Board(squares: Vector[Vector[Square]], turn: Char) {
 
   def startPosition(): Board = {
       //white
-      this.setPiece("a1", Rook("a1", 'w'))
-        .setPiece("b1", Knight("b1", 'w'))
-        .setPiece("c1", Bishop("c1", 'w'))
-        .setPiece("d1", Queen("d1", 'w'))
-        .setPiece("e1", King("e1", 'w'))
-        .setPiece("f1", Bishop("f1", 'w'))
-        .setPiece("g1", Knight("g1", 'w'))
-        .setPiece("h1", Rook("h1", 'w'))
-        .setPiece("a2", Pawn("a2", 'w'))
-        .setPiece("b2", Pawn("b2", 'w'))
-        .setPiece("c2", Pawn("c2", 'w'))
-        .setPiece("d2", Pawn("d2", 'w'))
-        .setPiece("e2", Pawn("e2", 'w'))
-        .setPiece("f2", Pawn("f2", 'w'))
-        .setPiece("g2", Pawn("g2", 'w'))
-        .setPiece("h2", Pawn("h2", 'w'))
+      this.setPiece(Rook("a1", 'w'))
+        .setPiece(Knight("b1", 'w'))
+        .setPiece(Bishop("c1", 'w'))
+        .setPiece(Queen("d1", 'w'))
+        .setPiece(King("e1", 'w'))
+        .setPiece(Bishop("f1", 'w'))
+        .setPiece(Knight("g1", 'w'))
+        .setPiece(Rook("h1", 'w'))
+        .setPiece(Pawn("a2", 'w'))
+        .setPiece(Pawn("b2", 'w'))
+        .setPiece(Pawn("c2", 'w'))
+        .setPiece(Pawn("d2", 'w'))
+        .setPiece(Pawn("e2", 'w'))
+        .setPiece(Pawn("f2", 'w'))
+        .setPiece(Pawn("g2", 'w'))
+        .setPiece(Pawn("h2", 'w'))
       //black
-        .setPiece("a8", Rook("a8", 'b'))
-        .setPiece("b8", Knight("b8", 'b'))
-        .setPiece("c8", Bishop("c8", 'b'))
-        .setPiece("d8", Queen("d8", 'b'))
-        .setPiece("e8", King("e8", 'b'))
-        .setPiece("f8", Bishop("f8", 'b'))
-        .setPiece("g8", Knight("g8", 'b'))
-        .setPiece("h8", Rook("h8", 'b'))
-        .setPiece("a7", Pawn("a7", 'b'))
-        .setPiece("b7", Pawn("b7", 'b'))
-        .setPiece("c7", Pawn("c7", 'b'))
-        .setPiece("d7", Pawn("d7", 'b'))
-        .setPiece("e7", Pawn("e7", 'b'))
-        .setPiece("f7", Pawn("f7", 'b'))
-        .setPiece("g7", Pawn("g7", 'b'))
-        .setPiece("h7", Pawn("h7", 'b'))
+        .setPiece(Rook("a8", 'b'))
+        .setPiece(Knight("b8", 'b'))
+        .setPiece(Bishop("c8", 'b'))
+        .setPiece(Queen("d8", 'b'))
+        .setPiece(King("e8", 'b'))
+        .setPiece(Bishop("f8", 'b'))
+        .setPiece(Knight("g8", 'b'))
+        .setPiece(Rook("h8", 'b'))
+        .setPiece(Pawn("a7", 'b'))
+        .setPiece(Pawn("b7", 'b'))
+        .setPiece(Pawn("c7", 'b'))
+        .setPiece(Pawn("d7", 'b'))
+        .setPiece(Pawn("e7", 'b'))
+        .setPiece(Pawn("f7", 'b'))
+        .setPiece(Pawn("g7", 'b'))
+        .setPiece(Pawn("h7", 'b'))
 
   }
 
