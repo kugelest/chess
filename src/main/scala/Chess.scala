@@ -1,21 +1,20 @@
 import model._
 import aview.Tui
+import controller.Controller
 
 import scala.io.StdIn.readLine
 
 object Chess {
-  var board = new Board()
-  val tui = new Tui
+  val controller = new Controller(new Board(8))
+  val tui = new Tui(controller)
+  controller.notifyObservers()
 
   def main(args: Array[String]): Unit = {
-    var input: String = ""
-    println("Board: \n" + board.toString)
+      var input: String = ""
 
-    do {
-      input = readLine()
-      board = tui.processInputLine(input, board)
-      println(board)
-    } while(input != "q")
-
-  }
+      do {
+        input = readLine()
+        tui.processInputLine(input)
+      } while (input != "quit")
+    }
 }

@@ -1,23 +1,22 @@
 package aview
 
+import controller.Controller
 import model.Board
+import util.Observer
 
-class Tui {
+class Tui(controller: Controller) extends Observer {
 
-  def processInputLine(input: String, board:Board):Board = {
+   controller.add(this)
+
+  def processInputLine(input: String):Unit = {
     input match {
-      case "s" => board.startPosition()
-      case "q" => board
-      case input if input.contains("move") =>
-        val from2 = s"${input(5)}${input(6)}"
-        val to = s"${input(8)}${input(9)}"
-
-        board.move(from2, to)
+      case "quit" =>
+      case "empty" => controller.createEmptyBoard()
+      case "start" => controller.createStartPosition()
+      case x if x.contains("move") => controller.move(x.slice(5, 7), x.slice(8, 10))
     }
   }
 
+  override def update(): Unit =  println(controller.boardToString())
 
-//  def checkInput(from: String, to: String): String = {
-//    val from = input.f
-//  }
 }
