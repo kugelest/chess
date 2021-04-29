@@ -5,7 +5,7 @@ import controller.Controller
 import scala.io.StdIn.readLine
 
 object Chess {
-  val controller = new Controller(new Board(8))
+  val controller = new Controller(new Board())
   val tui = new Tui(controller)
   controller.notifyObservers()
 
