@@ -1,8 +1,8 @@
 package model
 
-case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
+case class Board(private val squares: Vector[Vector[Square]], turn: Char = 'w') {
   def this(len: Int = 8) = {
-    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)), 'w')
+    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)))
   }
   val len: Int = squares.length
 
@@ -35,7 +35,7 @@ case class Board(private val squares: Vector[Vector[Square]], turn: Char) {
     }
   }
 
-
+  def setTurn(turn: Char): Board = if(List('w', 'b').contains(turn)) copy(turn = turn) else this
 
   def startPosition(): Board = {
       //white
