@@ -1,41 +1,29 @@
 package model
 
-case class Board(private val squares: Vector[Vector[Square]], turn: Char = 'w') {
-  def this(len: Int = 8) = {
-    this(Vector.tabulate(len, len)((i, k) => Square(('a'+k).toChar, len-i, None)))
-  }
+case class Board(private val squares: Vector[Vector[Square]], whichTurn: Char) {
+
+  def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a'+k).toChar}${len-i}", None)), 'w')
+
   val len: Int = squares.length
 
+  def getSquare(pos: String): Square = squares(len-pos(1).asDigit)(pos(0)-'a')
+  def setPiece(piece: Piece): Board = copy(squares.updated(len-piece.getRank, squares(len-piece.getRank).updated(piece.getFile-'a', Square(piece.pos, Some(piece)))))
+  def removePiece(pos: String): Board = copy(squares.updated(len-pos(1).asDigit, squares(len-pos(1).asDigit).updated(pos(0)-'a', Square(pos, None))))
+  def setTurn(turn: Char): Board = if(List('w', 'b').contains(turn)) copy(whichTurn = turn) else this
 
-
-
-  def getSquare(pos: String): Square = {
-    val file = pos.charAt(0)
-    val rank = pos.charAt(1).asDigit
-    squares(len-rank)(file-'a')
-  }
-
-  def setPiece(piece: Piece): Board = {
-
-    val file = piece.pos.charAt(0)
-    val rank = piece.pos.charAt(1).asDigit
-    copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, Some(piece)))))
-  }
-
-  def removePiece(pos: String): Board = {
-    val file = pos.charAt(0)
-    val rank = pos.charAt(1).asDigit
-    copy(squares.updated(len-rank, squares(len-rank).updated(file-'a', Square(file, rank, None))))
-  }
-
-  def move(from: String, to: String): Board = {
-    getSquare(from).getPiece match {
-      case Some(piece) => piece.move(to, this)
-      case None => this
+  def moveWhite(from: String, to: String): Board = {
+    getSquare(from).piece match {
+      case Some(piece) => if (piece.color == 'w') piece.move(to, copy(whichTurn = 'b')) else this
+      case _ => this
     }
   }
 
-  def setTurn(turn: Char): Board = if(List('w', 'b').contains(turn)) copy(turn = turn) else this
+  def moveBlack(from: String, to: String): Board = {
+    getSquare(from).piece match {
+      case Some(piece) => if (piece.color == 'b') piece.move(to, copy(whichTurn = 'w')) else this
+      case _ => this
+    }
+  }
 
   def startPosition(): Board = {
       //white
@@ -72,12 +60,11 @@ case class Board(private val squares: Vector[Vector[Square]], turn: Char = 'w') 
         .setPiece(Pawn("f7", 'b'))
         .setPiece(Pawn("g7", 'b'))
         .setPiece(Pawn("h7", 'b'))
-
   }
 
   override def toString: String =  {
-    val filesStr = String.format("%" + (len*2+3) + "s\n\n", squares.head.map(_.file).mkString(" "))
-    val ranksAndSquaresStr = squares.map(row => row.mkString(f"${row.head.rank}%-4d", " ", f"${row.head.rank}%4d"))
+    val filesStr = String.format("%" + (len*2+3) + "s\n\n", squares.head.map(_.getFile).mkString(" "))
+    val ranksAndSquaresStr = squares.map(row => row.mkString(f"${row.head.getRank}%-4d", " ", f"${row.head.getRank}%4d"))
     ranksAndSquaresStr.mkString(filesStr, "\n", s"\n\n$filesStr")
   }
 }

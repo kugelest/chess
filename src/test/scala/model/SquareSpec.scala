@@ -5,8 +5,8 @@ import org.scalatest.matchers.should.Matchers
 
 class SquareSpec extends AnyWordSpec with Matchers {
   "A Square" when {
-    "new " should {
-      val square = Square('A', 1)
+    "empty " should {
+      val square = Square("a1", None)
       "have a String representation" in {
         square.toString should be("-")
       }

@@ -10,12 +10,16 @@ class Controller(var board: Board) extends Observable{
   }
 
   def createStartPosition(): Unit = {
+    board = new Board()
     board = board.startPosition()
     notifyObservers()
   }
 
   def move(from: String, to: String): Unit = {
-    board = board.move(from, to)
+    board.whichTurn match {
+      case 'w' => board = board.moveWhite(from, to)
+      case 'b' => board = board.moveBlack(from, to)
+    }
     notifyObservers()
   }
 

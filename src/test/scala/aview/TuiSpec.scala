@@ -1,19 +1,18 @@
 package aview
 
+import controller.Controller
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
-
 import model._
 
 class TuiSpec extends AnyWordSpec with Matchers{
   "A Tui" should {
-    var board = new Board()
-    val tui = new Tui()
-    "print out an ready Board on input 's'" in {
-      tui.processInputLine("s", board)
+    val tui = new Tui(new Controller(new Board()))
+    "print out an ready Board on input 'start'" in {
+      tui.processInputLine("start")
     }
-    "exit the program on input 'q'" in {
-      tui.processInputLine("q", board)
+    "exit the program on input 'quit'" in {
+      tui.processInputLine("quit")
     }
 
   }

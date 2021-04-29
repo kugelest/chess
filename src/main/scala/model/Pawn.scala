@@ -2,10 +2,6 @@ package model
 
 case class Pawn(pos: String, color: Char) extends Piece {
 
-//  def move(to: String, board: Board): Board = {
-//    board.removePiece(pos).setPiece(to, Pawn(to, color))
-//  }
-
   def move(to: String, board: Board): Board = {
     val destFile = to.charAt(0)
     val destRank = to.charAt(1).asDigit
@@ -19,7 +15,7 @@ case class Pawn(pos: String, color: Char) extends Piece {
       ||color.equals('b') && destFile.equals((origFile+1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()
       ||color.equals('b') && destFile.equals((origFile-1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()) {
       board.removePiece(pos).setPiece(Pawn(to, color))
-    } else board
+    } else board.setTurn(color)
   }
 
   override def toString: String = {
