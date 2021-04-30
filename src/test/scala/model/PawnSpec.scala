@@ -12,12 +12,15 @@ class PawnSpec extends AnyWordSpec with Matchers {
         whitePawn.toString should be ("\u265F")
         blackPawn.toString should be ("\u2659")
       }
-//      "be set on a board" in {
-//        val board = new Board().setPiece(whitePawn).setPiece(blackPawn)
-//        "and black Pawn should take white Pawn" in {
-//          //board.moveBlack("c4", "b3").getSquare("b3") should be (board.getSquare("b3").piece.get.equals(Pawn("b3", 'b')))
-//        }
-//      }
+      "be set on a board" should {
+        val board = new Board().setPiece(whitePawn).setPiece(blackPawn)
+        "black Pawn take white Pawn" in {
+          board.moveBlack("c4", "b3").getSquare("b3").toString should be (blackPawn.toString)
+        }
+        "do nothing, if illegal move" in {
+          board.moveWhite("b3", "h6").getSquare("b3").toString should be (whitePawn.toString)
+        }
+      }
     }
 
   }
