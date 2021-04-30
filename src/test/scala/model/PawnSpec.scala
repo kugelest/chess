@@ -1,0 +1,24 @@
+package model
+
+import org.scalatest.wordspec.AnyWordSpec
+import org.scalatest.matchers.should.Matchers
+
+class PawnSpec extends AnyWordSpec with Matchers {
+  "A Pawn" when {
+    "set as white and black Pawn to b3 and c4" should {
+      val whitePawn = Pawn("b3", 'w')
+      val blackPawn = Pawn("c4", 'b')
+      "have a String representaion" in {
+        whitePawn.toString should be ("\u265F")
+        blackPawn.toString should be ("\u2659")
+      }
+//      "be set on a board" in {
+//        val board = new Board().setPiece(whitePawn).setPiece(blackPawn)
+//        "and black Pawn should take white Pawn" in {
+//          //board.moveBlack("c4", "b3").getSquare("b3") should be (board.getSquare("b3").piece.get.equals(Pawn("b3", 'b')))
+//        }
+//      }
+    }
+
+  }
+}
