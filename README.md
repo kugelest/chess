@@ -1,1 +1,1 @@
-# chess
+[![Build Status](https://travis-ci.com/kugelest/chess.svg?branch=travis)](https://travis-ci.com/kugelest/chess)
