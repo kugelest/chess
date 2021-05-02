@@ -24,8 +24,8 @@ class SquareSpec extends AnyWordSpec with Matchers {
           square.mannedByBlack() should be(true)
         }
       }
-    "with position values" should{
-      val square = Square("a2", None)
+    "created with position values" should{
+      val square = Square("a2", Some(Pawn("a2", 'w')))
         "a letter (a-h) and a number (1-8)" in {
           square.getFile should be('a')
           square.getRank should be(2)
