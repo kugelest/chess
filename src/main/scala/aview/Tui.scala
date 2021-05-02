@@ -1,7 +1,6 @@
 package aview
 
 import controller.Controller
-import model.Board
 import util.Observer
 
 import scala.util.matching.Regex
