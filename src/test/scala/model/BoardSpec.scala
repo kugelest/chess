@@ -4,7 +4,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
 class BoardSpec extends AnyWordSpec with Matchers {
-  "A Board is the playingfield of Chess. A Board" when {
+  "A Board is the field of Chess. A Board" when {
     "to be constructed" should {
       val board = new Board()
       "be created with the length 8 " in {
@@ -39,6 +39,9 @@ class BoardSpec extends AnyWordSpec with Matchers {
       "set turn to black" in {
         board.setTurn('b').whichTurn should be ('b')
       }
+      "set turn to white" in {
+        board.setTurn('w').whichTurn should be ('w')
+      }
       "move white pawn from a2 to a3" in {
         board.startPosition().moveWhite("a2", "a3").getSquare("a3") should be (Square("a3", Some(Pawn("a3", 'w'))))
       }
@@ -52,7 +55,5 @@ class BoardSpec extends AnyWordSpec with Matchers {
         board.startPosition().moveBlack("a6", "a5").getSquare("a5") should be (Square("a5", None))
       }
     }
-
-
   }
 }
