@@ -32,6 +32,8 @@ class KnightSpec extends AnyWordSpec with Matchers{
         "when white turns end change color to 'b'" in {
           board.moveWhite("c3", "d5").whichTurn should be ('b')
           board.moveBlack("c6", "b4").whichTurn should be ('w')
+          board.moveWhite("c3", "d6").whichTurn should be ('w')
+          board.moveBlack("c6", "b5").whichTurn should be ('b')
         }
       }
     }
