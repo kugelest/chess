@@ -13,10 +13,10 @@ object Piece {
  def apply(kind: String, pos: String, color: Char): Piece = kind match {
    case "king" => King(pos, color)
    case "queen" => Queen(pos, color)
-   case "rook" => Queen(pos, color)
-   case "knight" => Queen(pos, color)
-   case "bishop" => Queen(pos, color)
-   case "pawn" => Queen(pos, color)
+   case "rook" => Rook(pos, color)
+   case "knight" => Knight(pos, color)
+   case "bishop" => Bishop(pos, color)
+   case "pawn" => Pawn(pos, color)
  }
 }
 
