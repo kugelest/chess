@@ -3,14 +3,8 @@ package model
 case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
 
 
-
-
   def whiteMovePossible(to: String, board: Board): Boolean = {
-    val destFile = to.charAt(0)
-    val destRank = to.charAt(1).asDigit
-    val origFile = pos.charAt(0)
-    val origRank = pos.charAt(1).asDigit
-
+    val (destFile, destRank, origFile, origRank) = convertMove(to)
     if (color.equals('w') && destFile.equals(origFile) && destRank.equals(origRank + 1) && board.getSquare(to).isFree
       ||color.equals('w') && destFile.equals((origFile+1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()
       ||color.equals('w') && destFile.equals((origFile-1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()) {
@@ -19,11 +13,7 @@ case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
   }
 
   def blackMovePossible(to: String, board: Board): Boolean = {
-    val destFile = to.charAt(0)
-    val destRank = to.charAt(1).asDigit
-    val origFile = pos.charAt(0)
-    val origRank = pos.charAt(1).asDigit
-
+    val (destFile, destRank, origFile, origRank) = convertMove(to)
     if (color.equals('b') && destFile.equals(origFile) && destRank.equals(origRank - 1) && board.getSquare(to).isFree
       ||color.equals('b') && destFile.equals((origFile+1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()
       ||color.equals('b') && destFile.equals((origFile-1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()) {

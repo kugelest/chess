@@ -1,16 +1,14 @@
 package model
 
-case class Board(private val squares: Vector[Vector[Square]], whichTurn: Char) {
+case class Board(private val squares: Vector[Vector[Square]]) {
 
-  def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a'+k).toChar}${len-i}", None)), 'w')
+  def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a'+k).toChar}${len-i}", None)))
 
   val len: Int = squares.length
 
   def getSquare(pos: String): Square = squares(len-pos(1).asDigit)(pos(0)-'a')
   def setPiece(piece: Piece): Board = copy(squares.updated(len-piece.getRank, squares(len-piece.getRank).updated(piece.getFile-'a', Square(piece.pos, Some(piece)))))
   def removePiece(pos: String): Board = copy(squares.updated(len-pos(1).asDigit, squares(len-pos(1).asDigit).updated(pos(0)-'a', Square(pos, None))))
-  def setTurn(turn: Char): Board = if(List('w', 'b').contains(turn)) copy(whichTurn = turn) else this
-
 
   def whiteMovePossible(from: String, to: String): Boolean = {
     getSquare(from).piece match {
@@ -23,21 +21,6 @@ case class Board(private val squares: Vector[Vector[Square]], whichTurn: Char) {
     getSquare(from).piece match {
       case Some(piece) => piece.blackMovePossible(to, this)
       case _ => false
-    }
-  }
-
-
-  def moveWhite(from: String, to: String): Board = {
-    getSquare(from).piece match {
-      case Some(piece) => if (piece.color == 'w') piece.move(to, copy(whichTurn = 'b')) else this
-      case _ => this
-    }
-  }
-
-  def moveBlack(from: String, to: String): Board = {
-    getSquare(from).piece match {
-      case Some(piece) => if (piece.color == 'b') piece.move(to, copy(whichTurn = 'w')) else this
-      case _ => this
     }
   }
 

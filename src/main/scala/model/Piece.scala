@@ -7,10 +7,17 @@ trait Piece {
 
   def whiteMovePossible(to: String, board: Board): Boolean
   def blackMovePossible(to: String, board: Board): Boolean
-
   def move(to: String, board: Board): Board = board.removePiece(pos).setPiece(Piece(kind, to, color))
   def getFile: Char = pos.head
   def getRank: Int = pos.tail.toInt
+
+  def convertMove(to: String): (Char, Int, Char, Int) = {
+    val destFile = to.charAt(0)
+    val destRank = to.charAt(1).asDigit
+    val origFile = pos.charAt(0)
+    val origRank = pos.charAt(1).asDigit
+    (destFile, destRank, origFile, origRank)
+  }
 }
 
 object Piece {
