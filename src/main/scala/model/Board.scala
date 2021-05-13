@@ -10,6 +10,13 @@ case class Board(private val squares: Vector[Vector[Square]]) {
   def setPiece(piece: Piece): Board = copy(squares.updated(len-piece.getRank, squares(len-piece.getRank).updated(piece.getFile-'a', Square(piece.pos, Some(piece)))))
   def removePiece(pos: String): Board = copy(squares.updated(len-pos(1).asDigit, squares(len-pos(1).asDigit).updated(pos(0)-'a', Square(pos, None))))
 
+  def move(from: String, to: String): Board = {
+    getSquare(from).piece match {
+      case Some(piece) => removePiece(from).setPiece(Piece(piece.kind, to, piece.color))
+      case _ => this
+    }
+  }
+
   def whiteMovePossible(from: String, to: String): Boolean = {
     getSquare(from).piece match {
       case Some(piece) => piece.whiteMovePossible(to, this)

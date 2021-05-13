@@ -23,12 +23,12 @@ class Controller(var board: Board, var gameStatus: GameStatus = WHITE_TURN) exte
     gameStatus match {
       case WHITE_TURN =>
         if (board.whiteMovePossible(from, to)) {
-          board = board.getSquare(from).piece.get.move(to, board)
+          board = board.move(from, to)
           gameStatus = BLACK_TURN
         }
       case BLACK_TURN =>
         if (board.blackMovePossible(from, to)) {
-          board = board.getSquare(from).piece.get.move(to, board)
+          board = board.move(from, to)
           gameStatus = WHITE_TURN
         }
       case _ =>
