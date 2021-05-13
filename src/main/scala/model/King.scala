@@ -2,6 +2,8 @@ package model
 
 case class King(pos: String, color: Char, kind: String = "king") extends Piece {
 
+  override def whiteMovePossible(to: String, board: Board): Boolean = true
+  override def blackMovePossible(to: String, board: Board): Boolean = true
 
   override def toString: String = {
     color match {

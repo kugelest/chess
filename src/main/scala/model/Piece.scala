@@ -5,6 +5,9 @@ trait Piece {
   def color: Char
   def kind: String
 
+  def whiteMovePossible(to: String, board: Board): Boolean
+  def blackMovePossible(to: String, board: Board): Boolean
+
   def move(to: String, board: Board): Board = board.removePiece(pos).setPiece(Piece(kind, to, color))
   def getFile: Char = pos.head
   def getRank: Int = pos.tail.toInt

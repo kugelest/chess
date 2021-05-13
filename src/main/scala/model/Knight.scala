@@ -2,6 +2,9 @@ package model
 
 case class Knight(pos: String, color: Char, kind: String = "knight") extends Piece {
 
+  override def whiteMovePossible(to: String, board: Board): Boolean = true
+  override def blackMovePossible(to: String, board: Board): Boolean = true
+
 //  def move(to: String, board: Board): Board = {
 //    val destFile = to.charAt(0)
 //    val destRank = to.charAt(1).asDigit

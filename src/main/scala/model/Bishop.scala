@@ -9,4 +9,7 @@ case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Pie
       case 'b' => "\u2657"
     }
   }
+
+  override def whiteMovePossible(to: String, board: Board): Boolean = true
+  override def blackMovePossible(to: String, board: Board): Boolean = true
 }

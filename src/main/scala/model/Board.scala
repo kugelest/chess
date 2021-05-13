@@ -11,6 +11,22 @@ case class Board(private val squares: Vector[Vector[Square]], whichTurn: Char) {
   def removePiece(pos: String): Board = copy(squares.updated(len-pos(1).asDigit, squares(len-pos(1).asDigit).updated(pos(0)-'a', Square(pos, None))))
   def setTurn(turn: Char): Board = if(List('w', 'b').contains(turn)) copy(whichTurn = turn) else this
 
+
+  def whiteMovePossible(from: String, to: String): Boolean = {
+    getSquare(from).piece match {
+      case Some(piece) => piece.whiteMovePossible(to, this)
+      case _ => false
+    }
+  }
+
+  def blackMovePossible(from: String, to: String): Boolean = {
+    getSquare(from).piece match {
+      case Some(piece) => piece.blackMovePossible(to, this)
+      case _ => false
+    }
+  }
+
+
   def moveWhite(from: String, to: String): Board = {
     getSquare(from).piece match {
       case Some(piece) => if (piece.color == 'w') piece.move(to, copy(whichTurn = 'b')) else this
