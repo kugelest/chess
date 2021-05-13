@@ -6,16 +6,15 @@ import util.Observable
 
 class Controller(var board: Board, var gameStatus: GameStatus = WHITE_TURN) extends Observable{
 
-
-
   def createEmptyBoard(size: Int = 8):Unit = {
     board = new Board(size)
     notifyObservers()
   }
 
   def createStartPosition(): Unit = {
-    board = new Board()
+    createEmptyBoard()
     board = board.startPosition()
+    gameStatus = WHITE_TURN
     notifyObservers()
   }
 
