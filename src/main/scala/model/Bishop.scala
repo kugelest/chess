@@ -1,10 +1,7 @@
 package model
 
-case class Bishop(pos: String, color: Char) extends Piece {
+case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Piece {
 
-  def move(to: String, board: Board): Board = {
-    board.removePiece(pos).setPiece(Bishop(to, color))
-  }
 
   override def toString: String = {
     color match {

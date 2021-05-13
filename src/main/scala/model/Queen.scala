@@ -1,10 +1,6 @@
 package model
 
-case class Queen(pos: String, color: Char) extends Piece {
-
-  def move(to: String, board: Board): Board = {
-    board.removePiece(pos).setPiece(Queen(to, color))
-  }
+case class Queen(pos: String, color: Char, kind: String = "queen") extends Piece {
 
   override def toString: String = {
     color match {
