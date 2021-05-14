@@ -8,7 +8,11 @@ class PawnSpec extends AnyWordSpec with Matchers {
     "set as white and black Pawn to b3 and c4" should {
       val whitePawn = Pawn("b3", 'w')
       val blackPawn = Pawn("c4", 'b')
+<<<<<<< HEAD
       "have a String representaion" in {
+=======
+      "have a String representation" in {
+>>>>>>> factory
         whitePawn.toString should be ("\u265F")
         blackPawn.toString should be ("\u2659")
       }
