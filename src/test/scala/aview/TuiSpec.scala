@@ -21,7 +21,7 @@ class TuiSpec extends AnyWordSpec with Matchers{
       tui.processInputLine("move a2 a3")
     }
     "do nothing on wrong input" in {
-      tui.processInputLine("")
+      tui.processInputLine(" ")
     }
   }
 }
