@@ -5,36 +5,145 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class KnightSpec extends AnyWordSpec with Matchers{
   "A Knight" when {
-    "set as white and black Knight to b1 and b8" should {
-      val whiteKnight = Knight("c3", 'w')
-      val blackKnight = Knight("c6", 'b')
+    "set as white and black Knight" should {
+      val whiteKnight = Piece("knight", "c3", 'w')
+      val blackKnight = Piece("knight", "c6", 'b')
+      val board = new Board().setPiece(whiteKnight).setPiece(blackKnight)
       "have a String representation" in {
         whiteKnight.toString should be ("\u265E")
         blackKnight.toString should be ("\u2658")
       }
-      "be set on a board" should {
-        val board = new Board().setPiece(whiteKnight).setPiece(blackKnight)
-        "white Knight moves from square c3 to e4 and change turn" in {
-          board.moveWhite("c3", "e4").getSquare("e4").toString should be (whiteKnight.toString)
-        }
-        "white Knight moves from square c3 to d5" in {
-          board.moveWhite("c3", "d5").getSquare("d5").toString should be (whiteKnight.toString)
-        }
-        "black Knight moves from square C6 to b4" in {
-          board.moveBlack("c6", "b4").getSquare("b4").toString should be (blackKnight.toString)
-        }
-        "black Knight moves from square C6 to a5" in {
-          board.moveBlack("c6", "a5").getSquare("a5").toString should be (blackKnight.toString)
-        }
-        "do nothing, if illegal move" in {
-          board.moveWhite("c3", "h6").getSquare("c3").toString should be (whiteKnight.toString)
-        }
-        "when white turns end change color to 'b'" in {
-          board.moveWhite("c3", "d5").whichTurn should be ('b')
-          board.moveBlack("c6", "b4").whichTurn should be ('w')
-          board.moveWhite("c3", "d6").whichTurn should be ('w')
-          board.moveBlack("c6", "b5").whichTurn should be ('b')
-        }
+      "white be able to move 2 Square up and 1 right" in {
+        board.whiteMovePossible("c3", "d5") should be (true)
+        board.move("c3", "d5").getSquare("d5").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square up and 1 left" in {
+        board.whiteMovePossible("c3", "b5") should be (true)
+        board.move("c3", "b5").getSquare("b5").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square down and 1 right" in {
+        board.whiteMovePossible("c3", "d1") should be (true)
+        board.move("c3", "d1").getSquare("d1").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square down and 1 left" in {
+        board.whiteMovePossible("c3", "b1") should be (true)
+        board.move("c3", "b1").getSquare("b1").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square right and 1 up" in {
+        board.whiteMovePossible("c3", "e4") should be (true)
+        board.move("c3", "e4").getSquare("e4").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square right and 1 down" in {
+        board.whiteMovePossible("c3", "e2") should be (true)
+        board.move("c3", "e2").getSquare("e2").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square left and 1 up" in {
+        board.whiteMovePossible("c3", "a4") should be (true)
+        board.move("c3", "a4").getSquare("a4").toString should be (whiteKnight.toString)
+      }
+      "white be able to move 2 Square left and 1 down" in {
+        board.whiteMovePossible("c3", "a2") should be (true)
+        board.move("c3", "a2").getSquare("a2").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 2 Square up and 2 left" in {
+        board.whiteMovePossible("c3", "a5") should be (false)
+        board.move("c3", "a5").getSquare("a5").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 2 Square up and 2 right" in {
+        board.whiteMovePossible("c3", "e5") should be (false)
+        board.move("c3", "e5").getSquare("e5").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 1 Square up and 1 left" in {
+        board.whiteMovePossible("c3", "b4") should be (false)
+        board.move("c3", "b4").getSquare("b4").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 1 Square up and 1 right" in {
+        board.whiteMovePossible("c3", "d4") should be (false)
+        board.move("c3", "d4").getSquare("d4").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 2 Square down and 2 left" in {
+        board.whiteMovePossible("c3", "a1") should be (false)
+        board.move("c3", "a1").getSquare("a1").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 2 Square down and 2 right" in {
+        board.whiteMovePossible("c3", "e1") should be (false)
+        board.move("c3", "e1").getSquare("e1").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 1 Square down and 1 left" in {
+        board.whiteMovePossible("c3", "b2") should be (false)
+        board.move("c3", "b2").getSquare("b2").toString should be (whiteKnight.toString)
+      }
+      "white not be able to move 1 Square down and 3 right" in {
+        board.whiteMovePossible("c3", "f2") should be (false)
+        board.move("c3", "f2").getSquare("f2").toString should be (whiteKnight.toString)
+      }
+      "black be able to move 2 Square down and 1 right" in {
+        board.blackMovePossible("c6", "d4") should be (true)
+        board.move("c6", "d4").getSquare("d4").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square down and 1 left" in {
+        board.blackMovePossible("c6", "b4") should be (true)
+        board.move("c6", "b4").getSquare("b4").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square up and 1 right" in {
+        board.blackMovePossible("c6", "d8") should be (true)
+        board.move("c6", "d8").getSquare("d8").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square up and 1 left" in {
+        board.blackMovePossible("c6", "b8") should be (true)
+        board.move("c6", "b8").getSquare("b8").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square right and 1 up" in {
+        board.blackMovePossible("c6", "e7") should be (true)
+        board.move("c6", "e7").getSquare("e7").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square right and 1 down" in {
+        board.blackMovePossible("c6", "e5") should be (true)
+        board.move("c6", "e5").getSquare("e5").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square left and 1 up" in {
+        board.blackMovePossible("c6", "a7") should be (true)
+        board.move("c6", "a7").getSquare("a7").toString should be (blackKnight.toString)
+      }
+      "black be able to move 2 Square left and 1 down" in {
+        board.blackMovePossible("c6", "a5") should be (true)
+        board.move("c6", "a5").getSquare("a5").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 2 Square down and 2 right" in {
+        board.blackMovePossible("c6", "e4") should be (false)
+        board.move("c6", "e4").getSquare("e4").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 2 Square down and 2 left" in {
+        board.blackMovePossible("c6", "a4") should be (false)
+        board.move("c6", "a4").getSquare("a4").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 2 Square up and 2 right" in {
+        board.blackMovePossible("c6", "e8") should be (false)
+        board.move("c6", "e8").getSquare("e8").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 2 Square up and 2 left" in {
+        board.blackMovePossible("c6", "a8") should be (false)
+        board.move("c6", "a8").getSquare("a8").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 1 Square down and 1 right" in {
+        board.blackMovePossible("c6", "d5") should be (false)
+        board.move("c6", "d5").getSquare("d5").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 1 Square down and 1 left" in {
+        board.blackMovePossible("c6", "b5") should be (false)
+        board.move("c6", "b5").getSquare("b5").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 1 Square up and 1 right" in {
+        board.blackMovePossible("c6", "d7") should be (false)
+        board.move("c6", "d7").getSquare("d7").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 1 Square up and 1 left" in {
+        board.blackMovePossible("c6", "b7") should be (false)
+        board.move("c6", "b7").getSquare("b7").toString should be (blackKnight.toString)
+      }
+      "black not be able to move 1 Square up and 3 right" in {
+        board.blackMovePossible("c6", "f7") should be (false)
+        board.move("c6", "f7").getSquare("f7").toString should be (blackKnight.toString)
       }
     }
   }

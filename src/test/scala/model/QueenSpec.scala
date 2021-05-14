@@ -15,7 +15,7 @@ class QueenSpec extends AnyWordSpec with Matchers{
       "be set to board" should {
         val board = new Board().setPiece(whiteQueen)
         "and do an illegal moved from d1 to d2" in {
-          board.moveWhite("d1", "d2").getSquare("d2").toString should be (whiteQueen.toString)
+          board.move("d1", "d2").getSquare("d2").toString should be (whiteQueen.toString)
         }
       }
     }

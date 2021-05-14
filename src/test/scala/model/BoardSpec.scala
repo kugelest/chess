@@ -36,23 +36,17 @@ class BoardSpec extends AnyWordSpec with Matchers {
       "remove Pawn at a2" in {
         board.startPosition().removePiece("a2").getSquare("a2") should be (Square("a2", None))
       }
-      "set turn to black" in {
-        board.setTurn('b').whichTurn should be ('b')
-      }
-      "set turn to white" in {
-        board.setTurn('w').whichTurn should be ('w')
-      }
       "move white pawn from a2 to a3" in {
-        board.startPosition().moveWhite("a2", "a3").getSquare("a3") should be (Square("a3", Some(Pawn("a3", 'w'))))
+        board.startPosition().move("a2", "a3").getSquare("a3") should be (Square("a3", Some(Pawn("a3", 'w'))))
       }
       "move black pawn from a7 to a6 after set turn to black" in {
-        board.startPosition().moveBlack("a7", "a6").getSquare("a6") should be (Square("a6", Some(Pawn("a6", 'b'))))
+        board.startPosition().move("a7", "a6").getSquare("a6") should be (Square("a6", Some(Pawn("a6", 'b'))))
       }
       "not move white pawn from a3, if there is no white pawn on a3" in {
-        board.startPosition().moveWhite("a3", "a4").getSquare("a4") should be (Square("a4", None))
+        board.startPosition().move("a3", "a4").getSquare("a4") should be (Square("a4", None))
       }
       "not move black pawn from a6, if there is no black pawn on a6" in {
-        board.startPosition().moveBlack("a6", "a5").getSquare("a5") should be (Square("a5", None))
+        board.startPosition().move("a6", "a5").getSquare("a5") should be (Square("a5", None))
       }
     }
   }
