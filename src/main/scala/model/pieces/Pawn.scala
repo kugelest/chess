@@ -4,23 +4,26 @@ import model.Board
 
 case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
 
-
   def whiteMovePossible(to: String, board: Board): Boolean = {
     val (destFile, destRank, origFile, origRank) = convertMove(to)
-    if (color.equals('w') && destFile.equals(origFile) && destRank.equals(origRank + 1) && board.getSquare(to).isFree
-      || color.equals('w') && destFile.equals((origFile + 1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()
-      || color.equals('w') && destFile.equals((origFile - 1).toChar) && destRank.equals(origRank + 1) && board.getSquare(to).mannedByBlack()) {
-      true
-    } else false
+    (color.equals('w'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to)) match {
+      case (true, 0, 1, dest) if dest.isFree => true
+      case (true, 0, 2, dest) if dest.isFree && origRank.equals(2) => true
+      case (true, -1, 1, dest) if dest.mannedByBlack() => true
+      case (true, 1, 1, dest) if dest.mannedByBlack() => true
+      case _ => false
+    }
   }
 
   def blackMovePossible(to: String, board: Board): Boolean = {
     val (destFile, destRank, origFile, origRank) = convertMove(to)
-    if (color.equals('b') && destFile.equals(origFile) && destRank.equals(origRank - 1) && board.getSquare(to).isFree
-      || color.equals('b') && destFile.equals((origFile + 1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()
-      || color.equals('b') && destFile.equals((origFile - 1).toChar) && destRank.equals(origRank - 1) && board.getSquare(to).mannedByWhite()) {
-      true
-    } else false
+    (color.equals('b'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to)) match {
+      case (true, 0, -1, dest) if dest.isFree => true
+      case (true, 0, -2, dest) if dest.isFree && origRank.equals(7) => true
+      case (true, -1, -1, dest) if dest.mannedByWhite() => true
+      case (true, 1, -1, dest) if dest.mannedByWhite() => true
+      case _ => false
+    }
   }
 
 
