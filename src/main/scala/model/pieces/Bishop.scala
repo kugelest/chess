@@ -1,4 +1,6 @@
-package model
+package model.pieces
+
+import model.Board
 
 case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Piece {
 
@@ -11,5 +13,6 @@ case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Pie
   }
 
   override def whiteMovePossible(to: String, board: Board): Boolean = true
+
   override def blackMovePossible(to: String, board: Board): Boolean = true
 }

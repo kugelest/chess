@@ -1,6 +1,7 @@
 import model._
 import aview.Tui
 import controller.Controller
+import controller.states.White_Turn
 
 import scala.io.StdIn.readLine
 

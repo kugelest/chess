@@ -1,4 +1,6 @@
-package model
+package model.pieces
+
+import model.Board
 
 trait Piece {
   def pos: String

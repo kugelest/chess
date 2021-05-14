@@ -1,5 +1,6 @@
 package model
 
+import model.pieces.Bishop
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

@@ -1,5 +1,7 @@
 package model
 
+import model.pieces.Piece
+
 case class Square(pos: String, piece: Option[Piece]) {
   def getFile: Char = pos.head
   def getRank: Int = pos.tail.toInt
