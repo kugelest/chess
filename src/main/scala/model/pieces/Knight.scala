@@ -8,7 +8,7 @@ case class Knight(pos: String, color: Char, kind: String = "knight") extends Pie
     val (destFile, destRank, origFile, origRank) = convertMove(to)
     color match {
       case 'w' =>
-        if (board.getSquare(to).isFree || board.getSquare(to).mannedByBlack()) {
+        if (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByBlack()) {
           if (destFile.equals((origFile + 1).toChar) || destFile.equals((origFile - 1).toChar)) {
             if (destRank.equals(origRank + 2) || destRank.equals(origRank - 2)) {
               true
@@ -27,7 +27,7 @@ case class Knight(pos: String, color: Char, kind: String = "knight") extends Pie
     val (destFile, destRank, origFile, origRank) = convertMove(to)
     color match {
       case 'b' =>
-        if (board.getSquare(to).isFree || board.getSquare(to).mannedByWhite()) {
+        if (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByWhite()) {
           if (destFile.equals((origFile + 1).toChar) || destFile.equals((origFile - 1).toChar)) {
             if (destRank.equals(origRank + 2) || destRank.equals(origRank - 2)) {
               true
