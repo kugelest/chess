@@ -26,49 +26,7 @@ case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
     Map("up" -> ups, "down" -> downs, "left" -> lefts, "right" -> rights)
   }
 
-  def eyesUp(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getUp(board) match {
-      case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
-        else squares
-      case None => squares
-      case Some(square) if square.isFree =>
-        eyesUp(square, board: Board, squares.patch(0, List(square), 0))
-    }
-  }
 
-  def eyesDown(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getDown(board) match {
-      case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
-        else squares
-      case None => squares
-      case Some(square) if square.isFree =>
-        eyesDown(square, board: Board, squares.patch(0, List(square), 0))
-    }
-  }
-
-  def eyesLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getLeft(board) match {
-      case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
-        else squares
-      case None => squares
-      case Some(square) if square.isFree =>
-        eyesLeft(square, board: Board, squares.patch(0, List(square), 0))
-    }
-  }
-
-  def eyesRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getRight(board) match {
-      case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
-        else squares
-      case None => squares
-      case Some(square) if square.isFree =>
-        eyesRight(square, board: Board, squares.patch(0, List(square), 0))
-    }
-  }
 
   override def toString: String = {
     color match {

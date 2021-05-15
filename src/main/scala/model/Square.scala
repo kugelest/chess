@@ -25,5 +25,21 @@ case class Square(pos: String, piece: Option[Piece]) {
     val newPos = s"${(getFile+1).toChar}$getRank"
     board.getSquare(newPos)
   }
+  def getUpLeft(board: Board): Option[Square] = {
+    val newPos = s"${(getFile-1).toChar}${getRank+1}"
+    board.getSquare(newPos)
+  }
+  def getUpRight(board: Board): Option[Square] = {
+    val newPos = s"${(getFile+1).toChar}${getRank+1}"
+    board.getSquare(newPos)
+  }
+  def getDownLeft(board: Board): Option[Square] = {
+    val newPos = s"${(getFile-1).toChar}${getRank-1}"
+    board.getSquare(newPos)
+  }
+  def getDownRight(board: Board): Option[Square] = {
+    val newPos = s"${(getFile+1).toChar}${getRank-1}"
+    board.getSquare(newPos)
+  }
   override def toString: String = piece.getOrElse("-").toString
 }

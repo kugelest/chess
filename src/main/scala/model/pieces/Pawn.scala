@@ -9,8 +9,8 @@ case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
     (color.equals('w'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
       case (true, 0, 1, dest) if dest.isFree => true
       case (true, 0, 2, dest) if dest.isFree && origRank.equals(2) => true
-      case (true, -1, 1, dest) if dest.mannedByBlack() => true
-      case (true, 1, 1, dest) if dest.mannedByBlack() => true
+      case (true, -1, 1, dest) if dest.mannedByBlack => true
+      case (true, 1, 1, dest) if dest.mannedByBlack => true
       case _ => false
     }
   }
@@ -20,8 +20,8 @@ case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
     (color.equals('b'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
       case (true, 0, -1, dest) if dest.isFree => true
       case (true, 0, -2, dest) if dest.isFree && origRank.equals(7) => true
-      case (true, -1, -1, dest) if dest.mannedByWhite() => true
-      case (true, 1, -1, dest) if dest.mannedByWhite() => true
+      case (true, -1, -1, dest) if dest.mannedByWhite => true
+      case (true, 1, -1, dest) if dest.mannedByWhite => true
       case _ => false
     }
   }
