@@ -1,4 +1,4 @@
-val a = 'a'
-val b = 'c'
+val char = 'h'
 
-'a'.compareTo('h')
+
+s"${(char+1).toChar}"
