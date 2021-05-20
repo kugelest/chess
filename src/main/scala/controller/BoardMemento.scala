@@ -5,10 +5,13 @@ import model.Board
 import model.pieces.Piece
 import util.Memento
 
-class BoardMemento(controller: Controller) extends Memento {
+class BoardMemento(state: State, board: Board) extends Memento {
 //  private val chessboard =  board
 
-  override def getController: Controller = {
-    controller
+  override def getState: State = {
+    state
+  }
+  override def getBoard: Board = {
+    board
   }
 }

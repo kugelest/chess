@@ -6,5 +6,6 @@ import model.Board
 import model.pieces.Piece
 
 trait Memento {
-  def getController: Controller
+  def getState: State
+  def getBoard: Board
 }
