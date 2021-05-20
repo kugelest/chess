@@ -16,7 +16,7 @@ class BishopSpec extends AnyWordSpec with Matchers {
         blackBishop.toString should be ("\u2657")
       }
       "check if white move is possible" in {
-        board.whiteMovePossible("c1", "b3") should be (true)
+        board.whiteMovePossible("c1", "b2") should be (true)
       }
       "check if black move is possible" in {
         board.blackMovePossible("c7", "b6") should be (true)
