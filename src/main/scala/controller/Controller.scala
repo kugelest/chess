@@ -19,7 +19,7 @@ class Controller(var board: Board) extends Observable {
   }
 
   def move(from: String, to: String): Unit = {
-    undoManager.doStep(new MoveCommand(from, to, this))
+    undoManager.doStep(new MoveCommand(from, to, state))
     notifyObservers()
   }
 
@@ -29,12 +29,12 @@ class Controller(var board: Board) extends Observable {
   }
 
   def undo(): Unit = {
-    undoManager.undoStep
+    undoManager.undoStep()
     notifyObservers()
   }
 
   def redo(): Unit = {
-    undoManager.redoStep
+    undoManager.redoStep()
     notifyObservers()
   }
 

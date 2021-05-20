@@ -1,13 +1,14 @@
 package controller
 
+import controller.states.State
 import model.Board
 import model.pieces.Piece
 import util.Memento
 
-class BoardMemento(board: Board) extends Memento {
+class BoardMemento(state: State) extends Memento {
 //  private val chessboard =  board
 
-  override def getBoard: Board = {
-    board
+  override def getState: State = {
+    state
   }
 }
