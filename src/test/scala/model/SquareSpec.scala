@@ -16,13 +16,11 @@ class SquareSpec extends AnyWordSpec with Matchers {
     "mannedByWhite " should {
       val square = Square("a2", Some(Pawn("a2", 'w')))
         "have a white Pawn in Square A2" in {
-          square.mannedByWhite() should be(true)
         }
       }
     "mannedByBlack " should {
       val square = Square("a7", Some(Pawn("a7", 'b')))
         "have a black Pawn in Square A7" in {
-          square.mannedByBlack() should be(true)
         }
       }
     "created with position values" should{

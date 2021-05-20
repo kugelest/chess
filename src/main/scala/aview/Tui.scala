@@ -15,6 +15,8 @@ class Tui(controller: Controller) extends Observer {
       case "quit" =>
       case "empty" => controller.createEmptyBoard()
       case "start" => controller.createStartPosition()
+      case "undo" => controller.undo()
+      case "redo" => controller.redo()
       case Move(str) =>
         val fromTo = str.split(" ").takeRight(2)
         controller.move(fromTo(0), fromTo(1))

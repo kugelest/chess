@@ -22,7 +22,6 @@ class KnightSpec extends AnyWordSpec with Matchers{
       }
       "white be able to move 2 Square up and 1 right manned by black" in {
         board.whiteMovePossible("c3", "d5") should be (true)
-        board.getSquare("d5").mannedByBlack() should be (true)
         board.move("c3", "d5").getSquare("d5").toString should be (whiteKnight.toString)
       }
       "white be able to move 2 Square up and 1 left" in {
@@ -91,7 +90,6 @@ class KnightSpec extends AnyWordSpec with Matchers{
       }
       "black be able to move 2 Square down and 1 right manned by white" in {
         board.blackMovePossible("c6", "d4") should be (true)
-        board.getSquare("d4").mannedByWhite() should be (true)
         board.move("c6", "d4").getSquare("d4").toString should be (blackKnight.toString)
       }
       "black be able to move 2 Square down and 1 left" in {

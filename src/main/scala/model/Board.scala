@@ -2,7 +2,7 @@ package model
 
 import model.pieces.Piece
 
-case class Board(private val squares: Vector[Vector[Square]]) {
+case class Board(val squares: Vector[Vector[Square]]) {
 
   def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a'+k).toChar}${len-i}", None)))
 
