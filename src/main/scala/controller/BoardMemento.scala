@@ -1,12 +1,13 @@
 package controller
 
+import model.Board
 import model.pieces.Piece
 import util.Memento
 
-class BoardMemento(board: Vector[Piece]) extends Memento {
-  private val chessboard =  board
+class BoardMemento(board: Board) extends Memento {
+//  private val chessboard =  board
 
-  override def getPieces: Vector[Piece] = {
-    chessboard
+  override def getBoard: Board = {
+    board
   }
 }
