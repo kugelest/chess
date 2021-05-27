@@ -2,18 +2,19 @@ package model
 
 import model.pieces.Piece
 
-case class Board(val squares: Vector[Vector[Square]]) {
+import scala.util.{Failure, Success, Try}
+import scala.util.Success
+
+case class Board(private val squares: Vector[Vector[Square]]) {
 
   def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a'+k).toChar}${len-i}", None)))
 
   val len: Int = squares.length
 
   def getSquare(pos: String): Option[Square] = {
-    try{
-      Some(squares(len-pos(1).asDigit)(pos(0)-'a'))
-    }
-    catch {
-      case x: IndexOutOfBoundsException => None
+    Try (Some(squares(len-pos(1).asDigit)(pos(0)-'a'))) match {
+      case Success(square) => square
+      case Failure(exception) => None
     }
   }
 

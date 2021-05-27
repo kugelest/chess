@@ -20,7 +20,7 @@ class Tui(controller: Controller) extends Observer {
       case Move(str) =>
         val fromTo = str.split(" ").takeRight(2)
         controller.move(fromTo(0), fromTo(1))
-      case _ =>
+      case _ => println("Wrong input!")
     }
   }
 

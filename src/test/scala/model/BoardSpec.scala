@@ -1,6 +1,6 @@
 package model
 
-import model.pieces.Pawn
+import model.pieces.{Pawn, Piece}
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 
@@ -29,7 +29,7 @@ class BoardSpec extends AnyWordSpec with Matchers {
             |""".stripMargin)
       }
       "set white Pawn to a1 " in {
-        board.setPiece(Pawn("a1", 'w')).getSquare("a1") should be(Square("a1", Some(Pawn("a1", 'w'))))
+        board.setPiece(Pawn("a1", 'w')).getSquare("a1") should be(board.getSquare("a1"))
       }
       "set start position " in {
         board.startPosition().getSquare("a2") should be(Square("a2", Some(Pawn("a2", 'w'))))

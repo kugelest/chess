@@ -1,7 +1,5 @@
 package controller
 
-import controller.states.State
-import model.pieces.Piece
 import util.Command
 
 class MoveCommand(from: String, to: String, val controller: Controller) extends Command {
