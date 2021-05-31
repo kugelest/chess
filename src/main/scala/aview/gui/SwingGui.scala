@@ -1,24 +1,22 @@
 package aview.gui
 
-import scala.swing._
 import controller._
 import util.Observer
+
+import scala.swing._
 
 import java.awt.Color
 import javax.swing.BorderFactory
 
 
 class SwingGui(controller: Controller) extends Frame with Observer {
+
   controller.add(this)
 
-  val LabelSquare = new Dimension(75, 75)
-  val LabelRank = new Dimension(50, 75)
-  val LabelFile = new Dimension(75, 50)
-
   title = "Chess"
-  minimumSize = new Dimension(1280, 960)
+  minimumSize = new Dimension(640, 360)
 
-  def BoardPanel = new GridPanel(8, 8) {
+  def BoardPanel: GridPanel = new GridPanel(8, 8) {
     for (i <- Range(0, 64)) {
       val cell = i % 8
       val row = Integer2int(7 - i / 8)
@@ -29,7 +27,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
           else background = Color.BLACK
         else if (row % 2 == 0) background = Color.WHITE
         else background = Color.BLACK
-        minimumSize = LabelSquare
+        minimumSize = new Dimension(50, 50)
       }
       contents += panel
     }
@@ -38,28 +36,24 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   def labelRank: GridPanel = new GridPanel(8, 1) {
     for (i <- Range(8, 0, -1)) {
       contents += new Label {
-        font = new Font("Monospace", 2, 20)
         text = i.toString
-        preferredSize = LabelRank
+        preferredSize = new Dimension(25, 50)
       }
     }
   }
 
   def labelFile: GridPanel = new GridPanel(1, 9) {
-
-    border = BorderFactory.createEmptyBorder(0, 50, 0, 50)
+    border = BorderFactory.createEmptyBorder(0, 25, 0, 25)
     for (i <- List('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H')) {
       contents += new Label {
-        font = new Font("Monospace", 2, 20)
         horizontalAlignment = Alignment.Center
         text = i.toString
-        preferredSize = LabelFile
+        preferredSize = new Dimension(50, 25)
       }
     }
   }
 
-  contents =
-    new BorderPanel {
+  contents = new BorderPanel {
       add(BoardPanel, BorderPanel.Position.Center)
       add(labelFile, BorderPanel.Position.North)
       add(labelFile, BorderPanel.Position.South)
@@ -81,5 +75,5 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
   visible = true
 
-  override def update: Boolean = {true}
+  override def update(): Boolean = {true}
 }
