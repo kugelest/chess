@@ -1,4 +1,8 @@
-val char = 'h'
+for {
+          rank <- 1 until 9
+          file <- 0 until 8
+        } {
+          val pos = rank.toString.concat(('a' + file).toChar.toString)
+          println(pos)
+        }
 
-
-s"${(char+1).toChar}"

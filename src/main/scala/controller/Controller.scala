@@ -2,6 +2,7 @@ package controller
 
 import controller.states.{State, White_Turn}
 import model.Board
+import model.pieces.Piece
 import util.{Observable, UndoManager}
 
 class Controller(var board: Board) extends Observable {
@@ -36,6 +37,17 @@ class Controller(var board: Board) extends Observable {
   def redo(): Unit = {
     undoManager.redoStep()
     notifyObservers()
+  }
+
+  def isManned(pos: String): Boolean = {
+    board.getSquare(pos) match {
+      case Some(square) => !square.isFree
+      case _ => false
+    }
+  }
+
+  def getPiece(pos: String): Option[Piece] = {
+    board.getPiece(pos)
   }
 
   def boardToString(): String = {

@@ -18,6 +18,8 @@ case class Board(private val squares: Vector[Vector[Square]]) {
     }
   }
 
+
+
   def getPiece(pos: String): Option[Piece] = {
     getSquare(pos) match {
       case Some(square) => square.piece

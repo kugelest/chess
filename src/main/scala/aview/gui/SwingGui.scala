@@ -14,23 +14,38 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   controller.add(this)
 
   title = "Chess"
+  var cells = Array.ofDim[SquarePanel](8, 8)
+
   minimumSize = new Dimension(640, 360)
 
-  def BoardPanel: GridPanel = new GridPanel(8, 8) {
-    for (i <- Range(0, 64)) {
-      val cell = i % 8
-      val row = Integer2int(7 - i / 8)
+//  def BoardPanel: GridPanel = new GridPanel(8, 8) {
+//    for (i <- Range(0, 64)) {
+//      val cell = i % 8
+//      val row = Integer2int(7 - i / 8)
+//
+//      val panel = new GridPanel(1, 1) {
+//        if (cell % 2 == 1)
+//          if (row % 2 == 1) background = Color.WHITE
+//          else background = Color.BLACK
+//        else if (row % 2 == 0) background = Color.WHITE
+//        else background = Color.BLACK
+//        minimumSize = new Dimension(50, 50)
+//      }
+//      contents += panel
+//    }
+//  }
 
-      val panel = new GridPanel(1, 1) {
-        if (cell % 2 == 1)
-          if (row % 2 == 1) background = Color.WHITE
-          else background = Color.BLACK
-        else if (row % 2 == 0) background = Color.WHITE
-        else background = Color.BLACK
-        minimumSize = new Dimension(50, 50)
-      }
-      contents += panel
-    }
+  def BoardPanel: GridPanel = new GridPanel(8, 8) {
+    for {
+          rank <- 0 until 8
+          file <- 0 until 8
+        } {
+          val pos = (rank+1).toString.concat(('a' + file).toChar.toString)
+          val squarePanel = new SquarePanel(pos, controller)
+          cells(rank)(file) = squarePanel
+          contents += squarePanel
+          listenTo(squarePanel)
+        }
   }
 
   def labelRank: GridPanel = new GridPanel(8, 1) {
@@ -75,5 +90,14 @@ class SwingGui(controller: Controller) extends Frame with Observer {
 
   visible = true
 
-  override def update(): Boolean = {true}
+  override def update(): Boolean = {
+    for {
+      row <- 0 until 8
+      column <- 0 until 8
+    } cells(row)(column).redraw
+    repaint()
+    true
+  }
+
+
 }
