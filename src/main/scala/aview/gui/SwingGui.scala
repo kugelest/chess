@@ -40,11 +40,10 @@ class SwingGui(controller: Controller) extends Frame with Observer {
           rank <- 0 until 8
           file <- 0 until 8
         } {
-          val pos = (rank+1).toString.concat(('a' + file).toChar.toString)
+          val pos = (('a' + file).toChar.toString).concat((8-rank).toString)
           val squarePanel = new SquarePanel(pos, controller)
           cells(rank)(file) = squarePanel
           contents += squarePanel
-          listenTo(squarePanel)
         }
   }
 
@@ -94,7 +93,9 @@ class SwingGui(controller: Controller) extends Frame with Observer {
     for {
       row <- 0 until 8
       column <- 0 until 8
-    } cells(row)(column).redraw
+    } {
+      cells(row)(column).redraw
+    }
     repaint()
     true
   }
