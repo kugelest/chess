@@ -7,11 +7,12 @@ trait BoardInterface {
 
   def getPiece(pos: String): Option[Piece]
 
-  def boardToString: String
+  def toString: String
 
-  def squareIsFree: Boolean
+
 }
 
 trait SquareInterface {
+  def isFree: Boolean
 
 }

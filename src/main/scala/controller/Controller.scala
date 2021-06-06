@@ -1,10 +1,10 @@
 package controller
 
 import controller.states.{State, White_Turn}
-import model.BoardComponent.BoardBaseImpl.{Board, Piece}
+import model.BoardComponent.BoardInterface
 import util.{Observable, UndoManager}
 
-class Controller(var board: Board) extends Observable {
+class Controller(var board: BoardInterface) extends Observable {
 
   var state: State = White_Turn(this)
   private val undoManager = new UndoManager

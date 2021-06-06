@@ -1,8 +1,10 @@
 package model.BoardComponent.BoardBaseImpl
 
+import model.BoardComponent.BoardInterface
+
 import scala.util.{Failure, Success, Try}
 
-case class Board(private val squares: Vector[Vector[Square]]) {
+case class Board(private val squares: Vector[Vector[Square]]) extends BoardInterface {
 
   def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a' + k).toChar}${len - i}", None)))
 
