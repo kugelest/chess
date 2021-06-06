@@ -9,6 +9,13 @@ trait BoardInterface {
 
   def toString: String
 
+  def move(from: String, to: String): Board
+
+  def whiteMovePossible(from: String, to: String): Boolean
+
+  def blackMovePossible(from: String, to: String): Boolean
+
+  def startPosition(): Board
 
 }
 
