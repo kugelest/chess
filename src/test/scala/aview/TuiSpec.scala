@@ -4,6 +4,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import model._
 import controller.Controller
+import model.BoardComponent.BoardBaseImpl.Board
 
 class TuiSpec extends AnyWordSpec with Matchers{
   "A Tui" should {

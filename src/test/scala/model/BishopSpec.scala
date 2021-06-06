@@ -1,6 +1,7 @@
 package model
 
-import model.pieces.Bishop
+import model.BoardComponent.BoardBaseImpl.Board
+import model.BoardComponent.BoardBaseImpl.pieces.Bishop
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

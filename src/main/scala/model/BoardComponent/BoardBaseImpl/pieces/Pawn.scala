@@ -1,6 +1,6 @@
-package model.pieces
+package model.BoardComponent.BoardBaseImpl.pieces
 
-import model.Board
+import model.BoardComponent.BoardBaseImpl.{Board, Piece}
 
 case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
 

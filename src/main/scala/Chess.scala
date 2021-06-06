@@ -1,9 +1,7 @@
-import model._
 import aview.Tui
 import aview.gui.SwingGui
 import controller.Controller
-import controller.states.White_Turn
-
+import model.BoardComponent.BoardBaseImpl.Board
 import scala.io.StdIn.readLine
 
 object Chess {

@@ -1,8 +1,8 @@
-package model.pieces
+package model.BoardComponent.BoardBaseImpl.pieces
 
-import model.{Board, Square}
+import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
 
-case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
+case class Queen(pos: String, color: Char, kind: String = "queen") extends Piece {
 
   override def whiteMovePossible(to: String, board: Board): Boolean = {
     color match {
@@ -23,16 +23,17 @@ case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
     val downs = eyesDown(board.getSquare(pos).get, board)
     val lefts = eyesLeft(board.getSquare(pos).get, board)
     val rights = eyesRight(board.getSquare(pos).get, board)
-    Map("up" -> ups, "down" -> downs, "left" -> lefts, "right" -> rights)
+    val upLefts = eyesUpLeft(board.getSquare(pos).get, board)
+    val upRights = eyesUpRight(board.getSquare(pos).get, board)
+    val downLefts = eyesDownLeft(board.getSquare(pos).get, board)
+    val downRights = eyesDownRight(board.getSquare(pos).get, board)
+    Map("up" -> ups, "down" -> downs, "left" -> lefts, "right" -> rights, "upLeft" -> upLefts, "upRight" -> upRights, "downLeft" -> downLefts, "downRight" -> downRights)
   }
-
-
 
   override def toString: String = {
     color match {
-      case 'w' => "\u265C"
-      case 'b' => "\u2656"
+      case 'w' => "\u265B"
+      case 'b' => "\u2655"
     }
   }
-
 }

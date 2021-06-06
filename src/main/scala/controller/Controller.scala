@@ -1,8 +1,7 @@
 package controller
 
 import controller.states.{State, White_Turn}
-import model.Board
-import model.pieces.Piece
+import model.BoardComponent.BoardBaseImpl.{Board, Piece}
 import util.{Observable, UndoManager}
 
 class Controller(var board: Board) extends Observable {

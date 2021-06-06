@@ -1,7 +1,7 @@
 package controller.states
 
 import controller.Controller
-import model.Board
+import model.BoardComponent.BoardBaseImpl.Board
 
 trait State {
   def controller: Controller

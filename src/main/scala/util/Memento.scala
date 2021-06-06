@@ -1,7 +1,7 @@
 package util
 
 import controller.states.State
-import model.Board
+import model.BoardComponent.BoardBaseImpl.Board
 
 trait Memento {
   def getState: State

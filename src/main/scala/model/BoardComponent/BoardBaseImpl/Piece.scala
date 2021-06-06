@@ -1,6 +1,6 @@
-package model.pieces
+package model.BoardComponent.BoardBaseImpl
 
-import model.{Board, Square}
+import model.BoardComponent.BoardBaseImpl.pieces._
 
 trait Piece {
   def pos: String

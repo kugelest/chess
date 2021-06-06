@@ -1,6 +1,7 @@
 package model
 
-import model.pieces.Queen
+import model.BoardComponent.BoardBaseImpl.Board
+import model.BoardComponent.BoardBaseImpl.pieces.Queen
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 

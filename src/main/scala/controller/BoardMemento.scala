@@ -1,7 +1,7 @@
 package controller
 
 import controller.states.State
-import model.Board
+import model.BoardComponent.BoardBaseImpl.Board
 import util.Memento
 
 class BoardMemento(state: State, board: Board) extends Memento {
