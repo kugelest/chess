@@ -14,7 +14,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
   controller.add(this)
 
   title = "Chess"
-  var cells = Array.ofDim[SquarePanel](8, 8)
+  var cells: Array[Array[SquarePanel]] = Array.ofDim[SquarePanel](8, 8)
 
   minimumSize = new Dimension(640, 360)
 
@@ -40,8 +40,8 @@ class SwingGui(controller: Controller) extends Frame with Observer {
           rank <- 0 until 8
           file <- 0 until 8
         } {
-          val pos = (('a' + file).toChar.toString).concat((8-rank).toString)
-          val squarePanel = new SquarePanel(pos, controller)
+          val pos = ('a' + file).toChar.toString.concat((8-rank).toString)
+          val squarePanel = new SquarePanel(pos, controller, if((rank+file)%2==0) new Color(200, 200, 255) else new Color(100, 100, 100))
           cells(rank)(file) = squarePanel
           contents += squarePanel
         }
@@ -94,7 +94,7 @@ class SwingGui(controller: Controller) extends Frame with Observer {
       row <- 0 until 8
       column <- 0 until 8
     } {
-      cells(row)(column).redraw
+      cells(row)(column).redraw()
     }
     repaint()
     true

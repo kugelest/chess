@@ -6,9 +6,9 @@ import scala.swing._
 import javax.swing.table._
 import scala.swing.event._
 
-class SquarePanel(pos: String, controller: Controller) extends FlowPanel {
+class SquarePanel(pos: String, controller: Controller, backgroundColor: Color) extends FlowPanel {
 
-  val backgroundColor = new Color(200, 200, 255)
+//  val backgroundColor = new Color(200, 200, 255)
 
   def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else "+"
 
