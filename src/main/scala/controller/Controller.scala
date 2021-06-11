@@ -1,7 +1,7 @@
 package controller
 
 import controller.states.{State, White_Turn}
-import model.BoardComponent.BoardBaseImpl.Piece
+import model.BoardComponent.Piece
 import model.BoardComponent.BoardInterface
 import util.{Observable, UndoManager}
 

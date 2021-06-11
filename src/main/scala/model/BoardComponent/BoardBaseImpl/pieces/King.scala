@@ -1,6 +1,7 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
-import model.BoardComponent.BoardBaseImpl.{Board, Piece}
+import model.BoardComponent.BoardBaseImpl.Board
+import model.BoardComponent.Piece
 
 case class King(pos: String, color: Char, kind: String = "king") extends Piece {
 

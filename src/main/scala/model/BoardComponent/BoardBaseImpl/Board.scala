@@ -1,6 +1,6 @@
 package model.BoardComponent.BoardBaseImpl
 
-import model.BoardComponent.BoardInterface
+import model.BoardComponent.{BoardInterface, Piece}
 
 import scala.util.{Failure, Success, Try}
 

@@ -1,6 +1,6 @@
 package model.BoardComponent.BoardBaseImpl
 
-import model.BoardComponent.SquareInterface
+import model.BoardComponent.{Piece, SquareInterface}
 
 case class Square(pos: String, piece: Option[Piece]) extends SquareInterface {
   def getFile: Char = pos.head
