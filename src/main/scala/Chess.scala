@@ -3,9 +3,14 @@ import aview.gui.SwingGui
 import controller.Controller
 import model.BoardComponent.BoardBaseImpl.Board
 import scala.io.StdIn.readLine
+import com.google.inject.Guice
 
 object Chess {
-  val controller = new Controller(new Board(8))
+  val injector = Guice.createInjector(new SudokuModule)
+  val controller = injector.getInstance(classOf[ControllerInterface])
+
+
+//  val controller = new Controller(new Board(8))
   val tui = new Tui(controller)
   val gui = new SwingGui(controller)
   controller.notifyObservers()
