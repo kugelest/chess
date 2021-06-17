@@ -1,16 +1,18 @@
 import aview.Tui
 import aview.gui.SwingGui
-import controller.Controller
 import model.BoardComponent.BoardBaseImpl.Board
+
 import scala.io.StdIn.readLine
 import com.google.inject.Guice
+import controller.controllerComponent.controllerBaseImpl.Controller
 
 object Chess {
-  val injector = Guice.createInjector(new SudokuModule)
-  val controller = injector.getInstance(classOf[ControllerInterface])
+  val injector = Guice.createInjector(new ChessModule)
+//  val injector = Guice.createInjector(new SudokuModule)
+//  val controller = injector.getInstance(classOf[ControllerInterface])
 
 
-//  val controller = new Controller(new Board(8))
+  val controller = new Controller(new Board(8))
   val tui = new Tui(controller)
   val gui = new SwingGui(controller)
   controller.notifyObservers()

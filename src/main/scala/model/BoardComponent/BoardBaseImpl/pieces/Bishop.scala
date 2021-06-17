@@ -1,7 +1,6 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
-import model.BoardComponent.BoardBaseImpl.{Board, Square}
-import model.BoardComponent.Piece
+import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
 
 case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Piece {
 

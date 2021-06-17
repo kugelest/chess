@@ -1,8 +1,9 @@
 package model.BoardComponent.BoardBaseImpl
 
-import model.BoardComponent.{Piece, SquareInterface}
+import com.google.inject.Inject
+import model.BoardComponent.{PieceInterface, SquareInterface}
 
-case class Square(pos: String, piece: Option[Piece]) extends SquareInterface {
+case class Square @Inject() (pos: String, piece: Option[PieceInterface]) extends SquareInterface {
   def getFile: Char = pos.head
 
   def getRank: Int = pos.tail.toInt

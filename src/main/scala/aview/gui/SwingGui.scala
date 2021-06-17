@@ -1,10 +1,10 @@
 package aview.gui
 
 import controller._
+import controller.controllerComponent.controllerBaseImpl.Controller
 import util.Observer
 
 import scala.swing._
-
 import java.awt.Color
 import javax.swing.BorderFactory
 

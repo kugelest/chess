@@ -1,10 +1,11 @@
 package model.BoardComponent.BoardBaseImpl
 
-import model.BoardComponent.{BoardInterface, Piece}
+import com.google.inject.Inject
+import model.BoardComponent.{BoardInterface, PieceInterface}
 
 import scala.util.{Failure, Success, Try}
 
-case class Board(private val squares: Vector[Vector[Square]]) extends BoardInterface {
+case class Board @Inject() (private val squares: Vector[Vector[Square]]) extends BoardInterface {
 
   def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a' + k).toChar}${len - i}", None)))
 
@@ -18,20 +19,20 @@ case class Board(private val squares: Vector[Vector[Square]]) extends BoardInter
   }
 
 
-  def getPiece(pos: String): Option[Piece] = {
+  def getPiece(pos: String): Option[PieceInterface] = {
     getSquare(pos) match {
       case Some(square) => square.piece
       case _ => None
     }
   }
 
-  def setPiece(piece: Piece): Board = copy(squares.updated(len - piece.getRank, squares(len - piece.getRank).updated(piece.getFile - 'a', Square(piece.pos, Some(piece)))))
+  def setPiece(piece: PieceInterface): Board = copy(squares.updated(len - piece.getRank, squares(len - piece.getRank).updated(piece.getFile - 'a', Square(piece.pos, Some(piece)))))
 
   def removePiece(pos: String): Board = copy(squares.updated(len - pos(1).asDigit, squares(len - pos(1).asDigit).updated(pos(0) - 'a', Square(pos, None))))
 
   def move(from: String, to: String): Board = {
     getPiece(from) match {
-      case Some(piece) => removePiece(from).setPiece(Piece(piece.kind, to, piece.color))
+      case Some(piece) => removePiece(from).setPiece(PieceInterface(piece.kind, to, piece.color))
       case _ => this
     }
   }
@@ -52,39 +53,39 @@ case class Board(private val squares: Vector[Vector[Square]]) extends BoardInter
 
   def startPosition(): Board = {
     //white
-    this.setPiece(Piece("rook", "a1", 'w'))
-      .setPiece(Piece("knight", "b1", 'w'))
-      .setPiece(Piece("bishop", "c1", 'w'))
-      .setPiece(Piece("queen", "d1", 'w'))
-      .setPiece(Piece("king", "e1", 'w'))
-      .setPiece(Piece("bishop", "f1", 'w'))
-      .setPiece(Piece("knight", "g1", 'w'))
-      .setPiece(Piece("rook", "h1", 'w'))
-      .setPiece(Piece("pawn", "a2", 'w'))
-      .setPiece(Piece("pawn", "b2", 'w'))
-      .setPiece(Piece("pawn", "c2", 'w'))
-      .setPiece(Piece("pawn", "d2", 'w'))
-      .setPiece(Piece("pawn", "e2", 'w'))
-      .setPiece(Piece("pawn", "f2", 'w'))
-      .setPiece(Piece("pawn", "g2", 'w'))
-      .setPiece(Piece("pawn", "h2", 'w'))
+    this.setPiece(PieceInterface("rook", "a1", 'w'))
+      .setPiece(PieceInterface("knight", "b1", 'w'))
+      .setPiece(PieceInterface("bishop", "c1", 'w'))
+      .setPiece(PieceInterface("queen", "d1", 'w'))
+      .setPiece(PieceInterface("king", "e1", 'w'))
+      .setPiece(PieceInterface("bishop", "f1", 'w'))
+      .setPiece(PieceInterface("knight", "g1", 'w'))
+      .setPiece(PieceInterface("rook", "h1", 'w'))
+      .setPiece(PieceInterface("pawn", "a2", 'w'))
+      .setPiece(PieceInterface("pawn", "b2", 'w'))
+      .setPiece(PieceInterface("pawn", "c2", 'w'))
+      .setPiece(PieceInterface("pawn", "d2", 'w'))
+      .setPiece(PieceInterface("pawn", "e2", 'w'))
+      .setPiece(PieceInterface("pawn", "f2", 'w'))
+      .setPiece(PieceInterface("pawn", "g2", 'w'))
+      .setPiece(PieceInterface("pawn", "h2", 'w'))
       //black
-      .setPiece(Piece("rook", "a8", 'b'))
-      .setPiece(Piece("knight", "b8", 'b'))
-      .setPiece(Piece("bishop", "c8", 'b'))
-      .setPiece(Piece("queen", "d8", 'b'))
-      .setPiece(Piece("king", "e8", 'b'))
-      .setPiece(Piece("bishop", "f8", 'b'))
-      .setPiece(Piece("knight", "g8", 'b'))
-      .setPiece(Piece("rook", "h8", 'b'))
-      .setPiece(Piece("pawn", "a7", 'b'))
-      .setPiece(Piece("pawn", "b7", 'b'))
-      .setPiece(Piece("pawn", "c7", 'b'))
-      .setPiece(Piece("pawn", "d7", 'b'))
-      .setPiece(Piece("pawn", "e7", 'b'))
-      .setPiece(Piece("pawn", "f7", 'b'))
-      .setPiece(Piece("pawn", "g7", 'b'))
-      .setPiece(Piece("pawn", "h7", 'b'))
+      .setPiece(PieceInterface("rook", "a8", 'b'))
+      .setPiece(PieceInterface("knight", "b8", 'b'))
+      .setPiece(PieceInterface("bishop", "c8", 'b'))
+      .setPiece(PieceInterface("queen", "d8", 'b'))
+      .setPiece(PieceInterface("king", "e8", 'b'))
+      .setPiece(PieceInterface("bishop", "f8", 'b'))
+      .setPiece(PieceInterface("knight", "g8", 'b'))
+      .setPiece(PieceInterface("rook", "h8", 'b'))
+      .setPiece(PieceInterface("pawn", "a7", 'b'))
+      .setPiece(PieceInterface("pawn", "b7", 'b'))
+      .setPiece(PieceInterface("pawn", "c7", 'b'))
+      .setPiece(PieceInterface("pawn", "d7", 'b'))
+      .setPiece(PieceInterface("pawn", "e7", 'b'))
+      .setPiece(PieceInterface("pawn", "f7", 'b'))
+      .setPiece(PieceInterface("pawn", "g7", 'b'))
+      .setPiece(PieceInterface("pawn", "h7", 'b'))
   }
 
   override def toString: String = {

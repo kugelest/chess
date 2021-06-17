@@ -1,6 +1,6 @@
 package aview.gui
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 
 import javax.swing.BorderFactory
 import scala.swing._

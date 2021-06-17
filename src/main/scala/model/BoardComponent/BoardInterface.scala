@@ -15,15 +15,9 @@ trait BoardInterface {
 
   def startPosition(): Board
 
-//  def getPiece(pos: String): Option[Piece]
+  def getPiece(pos: String): Option[PieceInterface]
 
 }
 
-trait SquareInterface {
-  def isFree: Boolean
 
-}
 
-trait PieceInterface {
-  def getPiece(pos: String): Option[Piece]
-}

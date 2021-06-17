@@ -1,6 +1,6 @@
 package controller.states
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 
 case class Black_Turn(controller: Controller) extends State {
   override def move(from: String, to: String): Unit = {

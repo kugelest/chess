@@ -1,6 +1,6 @@
 package controller.states
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import model.BoardComponent.BoardBaseImpl.Board
 
 trait State {

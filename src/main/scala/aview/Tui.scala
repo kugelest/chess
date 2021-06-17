@@ -1,6 +1,6 @@
 package aview
 
-import controller.Controller
+import controller.controllerComponent.controllerBaseImpl.Controller
 import util.Observer
 
 import scala.util.matching.Regex

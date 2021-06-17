@@ -1,5 +1,6 @@
 package controller
 
+import controller.controllerComponent.controllerBaseImpl.Controller
 import util.Command
 
 class MoveCommand(from: String, to: String, val controller: Controller) extends Command {

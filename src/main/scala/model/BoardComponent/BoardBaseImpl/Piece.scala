@@ -1,9 +1,12 @@
-package model.BoardComponent
+package model.BoardComponent.BoardBaseImpl
 
+import com.google.inject.Inject
 import model.BoardComponent.BoardBaseImpl.pieces._
 import model.BoardComponent.BoardBaseImpl.{Board, Square}
+import model.BoardComponent.PieceInterface
 
-trait Piece {
+abstract class Piece @Inject() extends PieceInterface {
+
   def pos: String
 
   def color: Char
@@ -115,7 +118,7 @@ trait Piece {
   }
 }
 
-object Piece {
+object PieceInterface {
  def apply(kind: String, pos: String, color: Char): Piece = kind match {
    case "king" => King(pos, color)
    case "queen" => Queen(pos, color)
@@ -124,5 +127,7 @@ object Piece {
    case "bishop" => Bishop(pos, color)
    case "pawn" => Pawn(pos, color)
  }
-}
 
+
+
+}

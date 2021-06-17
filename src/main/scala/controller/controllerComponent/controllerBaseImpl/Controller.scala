@@ -1,11 +1,13 @@
-package controller
+package controller.controllerComponent.controllerBaseImpl
 
+import com.google.inject.Inject
+import controller.MoveCommand
+import controller.controllerComponent.ControllerInterface
 import controller.states.{State, White_Turn}
-import model.BoardComponent.Piece
-import model.BoardComponent.BoardInterface
+import model.BoardComponent.{BoardInterface, PieceInterface}
 import util.{Observable, UndoManager}
 
-class Controller(var board: BoardInterface) extends Observable {
+class Controller @Inject() (var board: BoardInterface) extends Observable with ControllerInterface  {
 
   var state: State = White_Turn(this)
   private val undoManager = new UndoManager
@@ -46,7 +48,7 @@ class Controller(var board: BoardInterface) extends Observable {
     }
   }
 
-  def getPiece(pos: String): Option[Piece] = {
+  def getPiece(pos: String): Option[PieceInterface] = {
     board.getPiece(pos)
   }
 

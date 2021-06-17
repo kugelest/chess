@@ -1,9 +1,9 @@
 package aview
 
+import controller.controllerComponent.controllerBaseImpl.Controller
 import org.scalatest.wordspec.AnyWordSpec
 import org.scalatest.matchers.should.Matchers
 import model._
-import controller.Controller
 import model.BoardComponent.BoardBaseImpl.Board
 
 class TuiSpec extends AnyWordSpec with Matchers{

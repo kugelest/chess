@@ -1,7 +1,7 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
-import model.BoardComponent.BoardBaseImpl.{Board, Square}
-import model.BoardComponent.Piece
+import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
+import model.BoardComponent.PieceInterface
 
 case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
 
