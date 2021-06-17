@@ -1,5 +1,4 @@
   import com.google.inject.AbstractModule
-  import com.google.inject.name.Names
   import net.codingwell.scalaguice.ScalaModule
   import controller.controllerComponent._
   import model.BoardComponent.{BoardInterface, PieceInterface, SquareInterface}
