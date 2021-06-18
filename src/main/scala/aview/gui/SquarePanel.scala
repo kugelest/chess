@@ -4,8 +4,6 @@ import controller.controllerComponent.controllerBaseImpl.Controller
 
 import javax.swing.BorderFactory
 import scala.swing._
-import javax.swing.table._
-import scala.swing.event._
 
 class SquarePanel(pos: String, controller: Controller, backgroundColor: Color) extends FlowPanel {
 
@@ -14,7 +12,7 @@ class SquarePanel(pos: String, controller: Controller, backgroundColor: Color) e
   val label: Label =
     new Label {
       text = cellText()
-      font = new Font("Arial", 0, 70)
+      font = new Font("Monospace", 0, 70)
     }
 
   val cell: BoxPanel = new BoxPanel(Orientation.Horizontal) {
@@ -23,7 +21,7 @@ class SquarePanel(pos: String, controller: Controller, backgroundColor: Color) e
     contents += label
     preferredSize = new Dimension(100, 100)
     background = backgroundColor
-    border = BorderFactory.createEmptyBorder(0,17,15,0)
+    border = BorderFactory.createEmptyBorder(0, 15, 15, 0)
     repaint
   }
 

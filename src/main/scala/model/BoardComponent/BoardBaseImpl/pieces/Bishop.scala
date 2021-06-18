@@ -28,8 +28,8 @@ case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Pie
 
   override def toString: String = {
     color match {
-      case 'w' => "\u265D"
-      case 'b' => "\u2657"
+      case 'w' => "♗"
+      case 'b' => "♝"
     }
   }
 }

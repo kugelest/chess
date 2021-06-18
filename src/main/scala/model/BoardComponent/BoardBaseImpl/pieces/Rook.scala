@@ -1,7 +1,6 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
 import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
-import model.BoardComponent.PieceInterface
 
 case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
 
@@ -31,8 +30,8 @@ case class Rook(pos: String, color: Char, kind: String = "rook") extends Piece {
 
   override def toString: String = {
     color match {
-      case 'w' => "\u265C"
-      case 'b' => "\u2656"
+      case 'w' => "♖"
+      case 'b' => "♜"
     }
   }
 
