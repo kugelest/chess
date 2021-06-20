@@ -41,6 +41,14 @@ class Controller @Inject() (var board: BoardInterface) extends Observable with C
     notifyObservers()
   }
 
+  //def save: BoardInterface = {
+    //fileIO.save(grid)
+  //}
+
+  //def load: BoardInterface = {
+
+  //}
+
   def isManned(pos: String): Boolean = {
     board.getSquare(pos) match {
       case Some(square) => !square.isFree
