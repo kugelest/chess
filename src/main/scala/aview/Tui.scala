@@ -1,11 +1,12 @@
 package aview
 
+import controller.controllerComponent.ControllerInterface
 import controller.controllerComponent.controllerBaseImpl.Controller
 import util.Observer
 
 import scala.util.matching.Regex
 
-class Tui(controller: Controller) extends Observer {
+class Tui(controller: ControllerInterface) extends Observer {
    controller.add(this)
 
   val Move: Regex = "(move [a-h][1-8] [a-h][1-8])".r

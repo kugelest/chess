@@ -1,13 +1,14 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
+import com.google.inject.Inject
 import model.BoardComponent.BoardBaseImpl.{Board, Piece}
 import model.BoardComponent.PieceInterface
 
-case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
+case class Pawn (getPos: String, getColor: Char, kind: String = "pawn") extends Piece(getPos, getColor, kind) {
 
   def whiteMovePossible(to: String, board: Board): Boolean = {
     val (destFile, destRank, origFile, origRank) = convertMove(to)
-    (color.equals('w'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
+    (getColor.equals('w'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
       case (true, 0, 1, dest) if dest.isFree => true
       case (true, 0, 2, dest) if dest.isFree && origRank.equals(2) => true
       case (true, -1, 1, dest) if dest.mannedByBlack => true
@@ -18,7 +19,7 @@ case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
 
   def blackMovePossible(to: String, board: Board): Boolean = {
     val (destFile, destRank, origFile, origRank) = convertMove(to)
-    (color.equals('b'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
+    (getColor.equals('b'), destFile.compareTo(origFile), destRank-origRank, board.getSquare(to).get) match {
       case (true, 0, -1, dest) if dest.isFree => true
       case (true, 0, -2, dest) if dest.isFree && origRank.equals(7) => true
       case (true, -1, -1, dest) if dest.mannedByWhite => true
@@ -29,7 +30,7 @@ case class Pawn(pos: String, color: Char, kind: String = "pawn") extends Piece {
 
 
   override def toString: String = {
-    color match {
+    getColor match {
       case 'w' => "\u265F"
       case 'b' => "\u2659"
     }

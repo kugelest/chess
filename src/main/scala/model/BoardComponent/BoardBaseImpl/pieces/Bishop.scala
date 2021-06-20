@@ -1,33 +1,34 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
+import com.google.inject.Inject
 import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
 
-case class Bishop(pos: String, color: Char, kind: String = "bishop") extends Piece {
+case class Bishop(getPos: String, getColor: Char, kind: String = "bishop") extends Piece(getPos, getColor, kind) {
 
   override def whiteMovePossible(to: String, board: Board): Boolean = {
-    color match {
+    getColor match {
       case 'w' => eyesOn(board).values.flatten.toList.contains(board.getSquare(to).get)
       case _ => false
     }
   }
 
   override def blackMovePossible(to: String, board: Board): Boolean = {
-    color match {
+    getColor match {
       case 'b' => eyesOn(board).values.flatten.toList.contains(board.getSquare(to).get)
       case _ => false
     }
   }
 
   def eyesOn(board: Board): Map[String, List[Square]] = {
-    val upLefts = eyesUpLeft(board.getSquare(pos).get, board)
-    val upRights = eyesUpRight(board.getSquare(pos).get, board)
-    val downLefts = eyesDownLeft(board.getSquare(pos).get, board)
-    val downRights = eyesDownRight(board.getSquare(pos).get, board)
+    val upLefts = eyesUpLeft(board.getSquare(getPos).get, board)
+    val upRights = eyesUpRight(board.getSquare(getPos).get, board)
+    val downLefts = eyesDownLeft(board.getSquare(getPos).get, board)
+    val downRights = eyesDownRight(board.getSquare(getPos).get, board)
     Map("upLeft" -> upLefts, "upRight" -> upRights, "downLeft" -> downLefts, "downRight" -> downRights)
   }
 
   override def toString: String = {
-    color match {
+    getColor match {
       case 'w' => "\u265D"
       case 'b' => "\u2657"
     }

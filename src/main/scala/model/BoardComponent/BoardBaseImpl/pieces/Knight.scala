@@ -1,18 +1,19 @@
 package model.BoardComponent.BoardBaseImpl.pieces
 
+import com.google.inject.Inject
 import model.BoardComponent.BoardBaseImpl.{Board, Piece}
 import model.BoardComponent.PieceInterface
 
-case class Knight(pos: String, color: Char, kind: String = "knight") extends Piece {
+case class Knight (getPos: String, getColor: Char, kind: String = "knight") extends Piece(getPos, getColor, kind) {
 
   override def whiteMovePossible(to: String, board: Board): Boolean = {
-    if (color.equals('w') && (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByBlack)) {
+    if (getColor.equals('w') && (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByBlack)) {
       knightMove(to)
     } else false
   }
 
   override def blackMovePossible(to: String, board: Board): Boolean = {
-    if (color.equals('b') && (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByWhite)) {
+    if (getColor.equals('b') && (board.getSquare(to).get.isFree || board.getSquare(to).get.mannedByWhite)) {
       knightMove(to)
     } else false
   }
@@ -32,7 +33,7 @@ case class Knight(pos: String, color: Char, kind: String = "knight") extends Pie
 
 
   override def toString: String = {
-    color match {
+    getColor match {
       case 'w' => "\u265E"
       case 'b' => "\u2658"
     }

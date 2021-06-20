@@ -1,18 +1,18 @@
 package model.BoardComponent.BoardBaseImpl
 
 import com.google.inject.Inject
-import model.BoardComponent.{PieceInterface, SquareInterface}
+import model.BoardComponent.{SquareInterface}
 
-case class Square @Inject() (pos: String, piece: Option[PieceInterface]) extends SquareInterface {
+case class Square @Inject() (pos: String, piece: Option[Piece]) extends SquareInterface {
   def getFile: Char = pos.head
 
   def getRank: Int = pos.tail.toInt
 
   def isFree: Boolean = piece.isEmpty
 
-  def mannedByWhite: Boolean = if (piece.isDefined) piece.get.color.equals('w') else false
+  def mannedByWhite: Boolean = if (piece.isDefined) piece.get.getColor.equals('w') else false
 
-  def mannedByBlack: Boolean = if (piece.isDefined) piece.get.color.equals('b') else false
+  def mannedByBlack: Boolean = if (piece.isDefined) piece.get.getColor.equals('b') else false
 
   def getUp(board: Board): Option[Square] = {
     val newPos = s"$getFile${getRank + 1}"

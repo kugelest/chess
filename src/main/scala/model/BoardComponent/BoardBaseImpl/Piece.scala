@@ -1,15 +1,16 @@
 package model.BoardComponent.BoardBaseImpl
 
 import com.google.inject.Inject
-import model.BoardComponent.BoardBaseImpl.pieces._
+import model.BoardComponent.BoardBaseImpl.pieces.{Bishop, King, Knight, Pawn, Queen, Rook}
+//import model.BoardComponent.BoardBaseImpl.pieces._
 import model.BoardComponent.BoardBaseImpl.{Board, Square}
 import model.BoardComponent.PieceInterface
 
-abstract class Piece @Inject() extends PieceInterface {
+abstract class Piece @Inject() (pos: String, color: Char, kind: String) extends PieceInterface {
 
-  def pos: String
+  def getPos: String
 
-  def color: Char
+  def getColor: Char
 
   def kind: String
 
@@ -17,22 +18,22 @@ abstract class Piece @Inject() extends PieceInterface {
 
   def blackMovePossible(to: String, board: Board): Boolean
 
-  def getFile: Char = pos.head
+  def getFile: Char = getPos.head
 
-  def getRank: Int = pos.tail.toInt
+  def getRank: Int = getPos.tail.toInt
 
   def convertMove(to: String): (Char, Int, Char, Int) = {
     val destFile = to.charAt(0)
     val destRank = to.charAt(1).asDigit
-    val origFile = pos.charAt(0)
-    val origRank = pos.charAt(1).asDigit
+    val origFile = getPos.charAt(0)
+    val origRank = getPos.charAt(1).asDigit
     (destFile, destRank, origFile, origRank)
   }
 
   def eyesUp(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getUp(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -43,7 +44,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesDown(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getDown(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -54,7 +55,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -65,7 +66,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -76,7 +77,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getUpLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -87,7 +88,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getUpRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -98,7 +99,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getDownLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -109,7 +110,7 @@ abstract class Piece @Inject() extends PieceInterface {
   def eyesDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
     square.getDownRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!color.equals(square.piece.get.color)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -118,7 +119,7 @@ abstract class Piece @Inject() extends PieceInterface {
   }
 }
 
-object PieceInterface {
+object Piece {
  def apply(kind: String, pos: String, color: Char): Piece = kind match {
    case "king" => King(pos, color)
    case "queen" => Queen(pos, color)
@@ -127,7 +128,5 @@ object PieceInterface {
    case "bishop" => Bishop(pos, color)
    case "pawn" => Pawn(pos, color)
  }
-
-
-
 }
+

@@ -4,8 +4,9 @@ package controller.controllerComponent
 import controller.MoveCommand
 import controller.states.{State, White_Turn}
 import model.BoardComponent.{BoardInterface, PieceInterface}
+import util.Observable
 
-trait ControllerInterface {
+trait ControllerInterface extends Observable {
 
   def setState(newState: State): Unit
 

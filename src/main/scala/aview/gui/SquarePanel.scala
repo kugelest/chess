@@ -1,5 +1,6 @@
 package aview.gui
 
+import controller.controllerComponent.ControllerInterface
 import controller.controllerComponent.controllerBaseImpl.Controller
 
 import javax.swing.BorderFactory
@@ -7,7 +8,7 @@ import scala.swing._
 import javax.swing.table._
 import scala.swing.event._
 
-class SquarePanel(pos: String, controller: Controller, backgroundColor: Color) extends FlowPanel {
+class SquarePanel(pos: String, controller: ControllerInterface, backgroundColor: Color) extends FlowPanel {
 
   def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else " "
 

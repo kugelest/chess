@@ -1,12 +1,15 @@
 package model.BoardComponent
 
+import com.google.inject.ImplementedBy
 import model.BoardComponent.BoardBaseImpl.pieces._
-import model.BoardComponent.BoardBaseImpl.{Board, Square}
+import model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
 
+@ImplementedBy(classOf[Piece])
 trait PieceInterface {
-  def pos: String
 
-  def color: Char
+  def getPos: String
+
+  def getColor: Char
 
   def kind: String
 
@@ -37,4 +40,6 @@ trait PieceInterface {
   def eyesDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
 }
+
+
 

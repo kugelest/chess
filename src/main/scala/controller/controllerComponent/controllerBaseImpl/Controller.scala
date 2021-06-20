@@ -7,7 +7,7 @@ import controller.states.{State, White_Turn}
 import model.BoardComponent.{BoardInterface, PieceInterface}
 import util.{Observable, UndoManager}
 
-class Controller @Inject() (var board: BoardInterface) extends Observable with ControllerInterface  {
+class Controller @Inject() (var board: BoardInterface) extends ControllerInterface  {
 
   var state: State = White_Turn(this)
   private val undoManager = new UndoManager

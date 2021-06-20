@@ -1,6 +1,7 @@
 package aview.gui
 
 import controller._
+import controller.controllerComponent.ControllerInterface
 import controller.controllerComponent.controllerBaseImpl.Controller
 import util.Observer
 
@@ -9,7 +10,7 @@ import java.awt.Color
 import javax.swing.BorderFactory
 
 
-class SwingGui(controller: Controller) extends Frame with Observer {
+class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   controller.add(this)
 
