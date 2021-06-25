@@ -34,3 +34,12 @@ case class Pawn(getPos: String, getColor: Char, kind: String = "pawn") extends P
     }
   }
 }
+
+object Pawn {
+
+  import play.api.libs.json._
+
+  implicit val pieceWrites: Writes[Pawn] = Json.writes[Pawn]
+  implicit val pieceReads: Reads[Pawn] = Json.reads[Pawn]
+
+}

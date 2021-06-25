@@ -33,3 +33,12 @@ case class Bishop(getPos: String, getColor: Char, kind: String = "bishop") exten
     }
   }
 }
+
+object Bishop {
+
+  import play.api.libs.json._
+
+  implicit val pieceWrites: Writes[Bishop] = Json.writes[Bishop]
+  implicit val pieceReads: Reads[Bishop] = Json.reads[Bishop]
+
+}

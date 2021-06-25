@@ -37,3 +37,12 @@ case class Knight(getPos: String, getColor: Char, kind: String = "knight") exten
     }
   }
 }
+
+object Knight {
+
+  import play.api.libs.json._
+
+  implicit val pieceWrites: Writes[Knight] = Json.writes[Knight]
+  implicit val pieceReads: Reads[Knight] = Json.reads[Knight]
+
+}

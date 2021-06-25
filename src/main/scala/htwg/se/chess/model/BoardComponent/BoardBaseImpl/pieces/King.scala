@@ -15,3 +15,12 @@ case class King(getPos: String, getColor: Char, kind: String = "king") extends P
     }
   }
 }
+
+object King {
+
+  import play.api.libs.json._
+
+  implicit val pieceWrites: Writes[King] = Json.writes[King]
+  implicit val pieceReads: Reads[King] = Json.reads[King]
+
+}

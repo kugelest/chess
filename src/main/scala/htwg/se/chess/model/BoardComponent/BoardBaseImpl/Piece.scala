@@ -10,7 +10,7 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
 
   def getColor: Char
 
-  def kind: String
+//  def kind: String
 
   def whiteMovePossible(to: String, board: Board): Boolean
 
@@ -120,8 +120,8 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
 object Piece {
   import play.api.libs.json._
 
-//  implicit val pieceWrites: OWrites[Piece] = Json.writes[Piece]
-//  implicit val pieceReads: Reads[Piece] = Json.reads[Piece]
+  implicit val pieceWrites: Writes[Piece] = Json.writes[Piece]
+  implicit val pieceReads: Reads[Piece] = Json.reads[Piece]
 
   def apply(kind: String, pos: String, color: Char): Piece = kind match {
     case "king" => King(pos, color)

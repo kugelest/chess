@@ -59,6 +59,6 @@ case class Square @Inject()(pos: String, piece: Option[Piece]) extends SquareInt
 
 object Square {
   import play.api.libs.json._
-//  implicit val squareWrites = Json.writes[Square]
-//  implicit val squareReads = Json.reads[Square]
+  implicit val squareWrites = Json.writes[Square]
+  implicit val squareReads = Json.reads[Square]
 }
