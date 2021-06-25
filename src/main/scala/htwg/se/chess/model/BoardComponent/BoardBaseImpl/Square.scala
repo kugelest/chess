@@ -56,3 +56,9 @@ case class Square @Inject()(pos: String, piece: Option[Piece]) extends SquareInt
 
   override def toString: String = piece.getOrElse("-").toString
 }
+
+object Square {
+  import play.api.libs.json._
+//  implicit val squareWrites = Json.writes[Square]
+//  implicit val squareReads = Json.reads[Square]
+}
