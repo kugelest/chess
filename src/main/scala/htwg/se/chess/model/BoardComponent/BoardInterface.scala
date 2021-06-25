@@ -3,6 +3,8 @@ package htwg.se.chess.model.BoardComponent
 import htwg.se.chess.model.BoardComponent.BoardBaseImpl._
 
 trait BoardInterface {
+  def setPiece(piece: Piece): Board
+
   def getSquare(pos: String): Option[Square]
 
   def toString: String

@@ -48,10 +48,12 @@ class Controller @Inject()(var board: BoardInterface) extends ControllerInterfac
 
   def save: Unit = {
     fileIO.save(board)
+    notifyObservers()
   }
 
   def load: Unit = {
     board = fileIO.load
+    notifyObservers()
   }
 
   def isManned(pos: String): Boolean = {
