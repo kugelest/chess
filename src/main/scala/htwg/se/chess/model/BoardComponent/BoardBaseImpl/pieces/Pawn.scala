@@ -34,3 +34,4 @@ case class Pawn(getPos: String, getColor: Char, kind: String = "pawn") extends P
     }
   }
 }
+

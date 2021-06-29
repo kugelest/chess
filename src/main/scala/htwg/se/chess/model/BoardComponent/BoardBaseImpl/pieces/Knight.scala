@@ -1,6 +1,6 @@
 package htwg.se.chess.model.BoardComponent.BoardBaseImpl.pieces
 
-import htwg.se.chess.model.BoardComponent.BoardBaseImpl.{Board, Piece}
+import htwg.se.chess.model.BoardComponent.BoardBaseImpl.{Board, Piece, Square}
 
 case class Knight(getPos: String, getColor: Char, kind: String = "knight") extends Piece(getPos, getColor, kind) {
 
@@ -37,3 +37,4 @@ case class Knight(getPos: String, getColor: Char, kind: String = "knight") exten
     }
   }
 }
+

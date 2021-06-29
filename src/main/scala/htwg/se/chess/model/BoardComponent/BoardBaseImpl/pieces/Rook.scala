@@ -35,3 +35,4 @@ case class Rook(getPos: String, getColor: Char, kind: String = "rook") extends P
   }
 
 }
+

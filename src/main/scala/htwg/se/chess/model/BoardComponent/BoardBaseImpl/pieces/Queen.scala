@@ -37,3 +37,4 @@ case class Queen(getPos: String, getColor: Char, kind: String = "queen") extends
     }
   }
 }
+
