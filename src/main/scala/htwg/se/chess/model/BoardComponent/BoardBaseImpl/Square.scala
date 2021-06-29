@@ -1,7 +1,7 @@
 package htwg.se.chess.model.BoardComponent.BoardBaseImpl
 
 import com.google.inject.Inject
-import htwg.se.chess.model.BoardComponent.{SquareInterface}
+import htwg.se.chess.model.BoardComponent.SquareInterface
 
 case class Square @Inject()(pos: String, piece: Option[Piece]) extends SquareInterface {
   def getFile: Char = pos.head
@@ -55,10 +55,4 @@ case class Square @Inject()(pos: String, piece: Option[Piece]) extends SquareInt
   }
 
   override def toString: String = piece.getOrElse("-").toString
-}
-
-object Square {
-  import play.api.libs.json._
-//  implicit val squareWrites = Json.writes[Square]
-//  implicit val squareReads = Json.reads[Square]
 }

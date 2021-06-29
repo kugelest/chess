@@ -6,7 +6,6 @@ import htwg.se.chess.util.Observer
 import java.awt.Color
 import javax.swing.BorderFactory
 import scala.swing._
-import scala.swing.event.MouseClicked
 
 
 class SwingGui(controller: ControllerInterface) extends Frame with Observer {

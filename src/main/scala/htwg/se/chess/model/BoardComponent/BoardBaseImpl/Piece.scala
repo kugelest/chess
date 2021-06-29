@@ -118,11 +118,6 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
 }
 
 object Piece {
-  import play.api.libs.json._
-
-//  implicit val pieceWrites: OWrites[Piece] = Json.writes[Piece]
-//  implicit val pieceReads: Reads[Piece] = Json.reads[Piece]
-
   def apply(kind: String, pos: String, color: Char): Piece = kind match {
     case "king" => King(pos, color)
     case "queen" => Queen(pos, color)
