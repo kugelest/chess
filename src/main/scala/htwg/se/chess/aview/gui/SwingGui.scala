@@ -6,14 +6,21 @@ import htwg.se.chess.util.Observer
 import java.awt.Color
 import javax.swing.BorderFactory
 import scala.swing._
+import scala.swing.event.MouseClicked
 
 
 class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   controller.add(this)
+  controller.createStartPosition()
+
+  var fromSet = false
+  var from = ""
+  var to = ""
 
   title = "Chess"
-  var cells: Array[Array[SquarePanel]] = Array.ofDim[SquarePanel](8, 8)
+  //var cells: Array[Array[SquarePanel]] = Array.ofDim[SquarePanel](8, 8)
+  var cells = Array.ofDim[Label](8, 8)
 
   minimumSize = new Dimension(800, 800)
 
@@ -22,10 +29,41 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
       rank <- 0 until 8
       file <- 0 until 8
     } {
-      val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
-      val squarePanel = new SquarePanel(pos, controller, if ((rank + file) % 2 == 0) new Color(255, 255, 255) else new Color(139, 69, 19))
-      cells(rank)(file) = squarePanel
-      contents += squarePanel
+      val panel = new GridPanel(1, 1){
+        if(rank % 2 == 1)
+          if (file % 2 == 1) background = Color.WHITE
+          else background = Color.LIGHT_GRAY
+        else if ( file % 2 == 0) background = Color.WHITE
+        else background = Color.LIGHT_GRAY
+
+        val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
+        def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else " "
+
+        val label: Label = new Label {
+          text = cellText()
+          font = new Font("Monospace", 0, 75)
+          preferredSize = new Dimension(50, 50)
+        }
+        contents += label
+        cells(rank)(file) = label
+
+        update()
+        listenTo(this)
+        listenTo(mouse.clicks)
+        reactions += {
+          case e: MouseClicked => {
+            if(!fromSet){
+              fromSet = true
+              from = pos
+            } else {
+              fromSet = false
+              to = pos
+              controller.move(from, to)
+            }
+          }
+        }
+      }
+      contents += panel
     }
   }
 
@@ -75,10 +113,11 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
 
   override def update(): Boolean = {
     for {
-      row <- 0 until 8
-      column <- 0 until 8
+      rank <- 0 until 8
+      file <- 0 until 8
     } {
-      cells(row)(column).redraw()
+      //val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
+      //cells(rank)(file).text = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else " "
     }
     repaint()
     true
