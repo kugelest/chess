@@ -38,11 +38,3 @@ case class Queen(getPos: String, getColor: Char, kind: String = "queen") extends
   }
 }
 
-object Queen {
-
-  import play.api.libs.json._
-
-  implicit val pieceWrites: Writes[Queen] = Json.writes[Queen]
-  implicit val pieceReads: Reads[Queen] = Json.reads[Queen]
-
-}
