@@ -14,4 +14,4 @@ libraryDependencies += "net.codingwell" %% "scala-guice" % "5.0.1"
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.0.0"
 libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.2"
 
-coverageExcludedPackages += "htwg\\.se\\.chess\\.aview\\.gui;.*fileIOComponent.*;.*Chess"
+coverageExcludedPackages := "htwg\\.se\\.chess\\.aview\\.gui;.*FileIOComponent.*;.*Chess"
