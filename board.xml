@@ -1,20 +1,20 @@
 <board>
-    <square pos="a8"> value = ♜ </square>
-    <square pos="b8"> value = ♞ </square>
-    <square pos="c8"> value = ♝ </square>
-    <square pos="d8"> value = ♛ </square>
-    <square pos="e8"> value = ♚ </square>
-    <square pos="f8"> value = ♝ </square>
-    <square pos="g8"> value = ♞ </square>
-    <square pos="h8"> value = ♜ </square>
-    <square pos="a7"> value = ♟ </square>
-    <square pos="b7"> value = ♟ </square>
-    <square pos="c7"> value = ♟ </square>
-    <square pos="d7"> value = ♟ </square>
-    <square pos="e7"> value = ♟ </square>
-    <square pos="f7"> value = ♟ </square>
-    <square pos="g7"> value = ♟ </square>
-    <square pos="h7"> value = ♟ </square>
+    <square pos="a8"> value = </square>
+    <square pos="b8"> value = </square>
+    <square pos="c8"> value = </square>
+    <square pos="d8"> value = </square>
+    <square pos="e8"> value = </square>
+    <square pos="f8"> value = </square>
+    <square pos="g8"> value = </square>
+    <square pos="h8"> value = </square>
+    <square pos="a7"> value = </square>
+    <square pos="b7"> value = </square>
+    <square pos="c7"> value = </square>
+    <square pos="d7"> value = </square>
+    <square pos="e7"> value = </square>
+    <square pos="f7"> value = </square>
+    <square pos="g7"> value = </square>
+    <square pos="h7"> value = </square>
     <square pos="a6"> value = </square>
     <square pos="b6"> value = </square>
     <square pos="c6"> value = </square>
@@ -31,7 +31,7 @@
     <square pos="f5"> value = </square>
     <square pos="g5"> value = </square>
     <square pos="h5"> value = </square>
-    <square pos="a4"> value = ♙ </square>
+    <square pos="a4"> value = </square>
     <square pos="b4"> value = </square>
     <square pos="c4"> value = </square>
     <square pos="d4"> value = </square>
@@ -48,19 +48,19 @@
     <square pos="g3"> value = </square>
     <square pos="h3"> value = </square>
     <square pos="a2"> value = </square>
-    <square pos="b2"> value = ♙ </square>
-    <square pos="c2"> value = ♙ </square>
-    <square pos="d2"> value = ♙ </square>
-    <square pos="e2"> value = ♙ </square>
-    <square pos="f2"> value = ♙ </square>
-    <square pos="g2"> value = ♙ </square>
-    <square pos="h2"> value = ♙ </square>
-    <square pos="a1"> value = ♖ </square>
-    <square pos="b1"> value = ♘ </square>
-    <square pos="c1"> value = ♗ </square>
-    <square pos="d1"> value = ♕ </square>
-    <square pos="e1"> value = ♔ </square>
-    <square pos="f1"> value = ♗ </square>
-    <square pos="g1"> value = ♘ </square>
-    <square pos="h1"> value = ♖ </square>
+    <square pos="b2"> value = </square>
+    <square pos="c2"> value = </square>
+    <square pos="d2"> value = </square>
+    <square pos="e2"> value = </square>
+    <square pos="f2"> value = </square>
+    <square pos="g2"> value = </square>
+    <square pos="h2"> value = </square>
+    <square pos="a1"> value = </square>
+    <square pos="b1"> value = </square>
+    <square pos="c1"> value = </square>
+    <square pos="d1"> value = </square>
+    <square pos="e1"> value = </square>
+    <square pos="f1"> value = </square>
+    <square pos="g1"> value = </square>
+    <square pos="h1"> value = </square>
 </board>

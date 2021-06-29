@@ -19,9 +19,17 @@ class PawnSpec extends AnyWordSpec with Matchers {
         board.whiteMovePossible("b2", "b3") should be (true)
         board.whiteMovePossible("b2", "b5") should be (false)
       }
+      "check if white 2 square move is possible" in {
+        board.whiteMovePossible("b2", "b4") should be (true)
+        board.whiteMovePossible("b3", "b5") should be (false)
+      }
       "check if black move is possible" in {
         board.blackMovePossible("b7", "b6") should be (true)
         board.blackMovePossible("b7", "b4") should be (false)
+      }
+      "check if black 2 square move is possible" in {
+        board.blackMovePossible("b7", "b5") should be (true)
+        board.blackMovePossible("b6", "b4") should be (false)
       }
     }
     "set as white and black Pawn to b2 and c3" should {

@@ -27,7 +27,8 @@ class Tui(controller: ControllerInterface) extends Observer {
   }
 
   override def update(): Boolean = {
-    println(controller.boardToString()); true
+    println(controller.boardToString());
+    true
   }
 
 }

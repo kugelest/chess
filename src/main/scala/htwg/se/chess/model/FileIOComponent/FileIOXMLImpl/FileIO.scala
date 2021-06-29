@@ -15,7 +15,6 @@ class FileIO extends FileIOInterface {
     for (square <- squares) {
       val pos: String = (square \ "@pos").text
       val piece = square.text
-      println(piece)
       piece match {
         case " value = ♗ " => board = board.setPiece(Piece("bishop", pos, 'w'))
         case " value = ♔ " => board = board.setPiece(Piece("king", pos, 'w'))
@@ -52,15 +51,13 @@ class FileIO extends FileIOInterface {
 
   def boardToXml(board: BoardInterface): Elem = {
     <board>
-      {
-      for {
-        rank <- 0 until 8
-        file <- 0 until 8
-      } yield {
-        val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
-        squareToXml(board, pos)
-        }
-      }
+      {for {
+      rank <- 0 until 8
+      file <- 0 until 8
+    } yield {
+      val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
+      squareToXml(board, pos)
+    }}
     </board>
   }
 
@@ -68,12 +65,11 @@ class FileIO extends FileIOInterface {
     val piece = board.getPiece(pos)
     val xmlSquare = {
       <square pos={pos}>
-        value = {
-        piece match {
-          case Some(value) => value.toString
-          case None => ""
-          }
-        }
+        value =
+        {piece match {
+        case Some(value) => value.toString
+        case None => ""
+      }}
       </square>
     }
     xmlSquare
