@@ -47,7 +47,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
         contents += label
         cells(rank)(file) = label
 
-        update()
         listenTo(this)
         listenTo(mouse.clicks)
         reactions += {
@@ -62,6 +61,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
             }
           }
         }
+        update()
       }
       contents += panel
     }
