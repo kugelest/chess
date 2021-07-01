@@ -21,6 +21,12 @@ class QueenSpec extends AnyWordSpec with Matchers {
       "check if black move is possible" in {
         board.blackMovePossible("d8", "e7") should be (true)
       }
+      "check if white move is not possible" in {
+        board.whiteMovePossible("d1", "e3") should be (false)
+      }
+      "check if black move is not possible" in {
+        board.blackMovePossible("d8", "e6") should be (false)
+      }
     }
   }
 }
