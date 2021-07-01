@@ -117,7 +117,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
     } {
       val pos: String = ('a' + file).toChar.toString.concat((8 - rank).toString)
       def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else ""
-      //cells(rank)(file).text = cellText()
     }
     repaint()
     true
