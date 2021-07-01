@@ -19,8 +19,8 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
   var to = ""
 
   title = "Chess"
-  //var cells: Array[Array[SquarePanel]] = Array.ofDim[SquarePanel](8, 8)
-  var cells = Array.ofDim[Label](8, 8)
+
+  var cells: Array[Array[Label]] = Array.ofDim[Label](8, 8)
 
   minimumSize = new Dimension(800, 800)
 
@@ -29,15 +29,15 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
       rank <- 0 until 8
       file <- 0 until 8
     } {
-      val panel = new GridPanel(1, 1){
+      val panel: GridPanel = new GridPanel(1, 1){
         if(rank % 2 == 1)
           if (file % 2 == 1) background = Color.WHITE
           else background = Color.LIGHT_GRAY
         else if ( file % 2 == 0) background = Color.WHITE
         else background = Color.LIGHT_GRAY
 
-        val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
-        def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else " "
+        val pos: String = ('a' + file).toChar.toString.concat((8 - rank).toString)
+        def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else ""
 
         val label: Label = new Label {
           text = cellText()
@@ -50,7 +50,7 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
         listenTo(this)
         listenTo(mouse.clicks)
         reactions += {
-          case e: MouseClicked => {
+          case _: MouseClicked =>
             if(!fromSet){
               fromSet = true
               from = pos
@@ -59,7 +59,6 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
               to = pos
               controller.move(from, to)
             }
-          }
         }
         update()
       }
@@ -116,12 +115,11 @@ class SwingGui(controller: ControllerInterface) extends Frame with Observer {
       rank <- 0 until 8
       file <- 0 until 8
     } {
-      //val pos = ('a' + file).toChar.toString.concat((8 - rank).toString)
-      //cells(rank)(file).text = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else " "
+      val pos: String = ('a' + file).toChar.toString.concat((8 - rank).toString)
+      def cellText(): String = if (controller.isManned(pos)) controller.getPiece(pos).get.toString else ""
+      //cells(rank)(file).text = cellText()
     }
     repaint()
     true
   }
-
-
 }
