@@ -14,6 +14,8 @@ bin/
 .idea/
 .bsp
 target/
+.vscode/
+.metals/
 
 # Maven
 log/
