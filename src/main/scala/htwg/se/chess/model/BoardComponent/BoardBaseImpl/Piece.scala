@@ -10,7 +10,7 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
 
   def getColor: Char
 
-  def kind: String
+  // def kind: String
 
   def whiteMovePossible(to: String, board: Board): Boolean
 
