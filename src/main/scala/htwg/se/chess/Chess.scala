@@ -15,7 +15,8 @@ object Chess {
   val gui = new SwingGui(controller)
   controller.notifyObservers()
 
-  def main(args: Array[String]): Unit = {
+  @main
+  def main(): Unit = {
     var input: String = ""
 
     input = readLine()

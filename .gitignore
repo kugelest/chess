@@ -49,3 +49,8 @@ project/.sbtserver
 
 # Application
 yourgame.log
+
+
+.bloop/
+project/.bloop/
+project/metals.sbt
