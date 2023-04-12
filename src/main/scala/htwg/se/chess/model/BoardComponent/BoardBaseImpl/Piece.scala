@@ -28,91 +28,104 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     (destFile, destRank, origFile, origRank)
   }
 
-  def eyesUp(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getUp(board) match {
+  // def eyes(lookAtNextSquare: (Board) => Option[Square])(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  //   square.lookAtNextSquare(board) match {
+  //     case Some(square) if !square.isFree =>
+  //       if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+  //       else squares
+  //     case None => squares
+  //     case Some(square) if square.isFree =>
+  //       lookAtNextSquare(square, board: Board, squares.patch(0, List(square), 0))
+  //   }
+  // }
+
+
+
+  def lookUp(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareUp(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesUp(square, board: Board, squares.patch(0, List(square), 0))
+        lookUp(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesDown(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getDown(board) match {
+  def lookDown(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareDown(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesDown(square, board: Board, squares.patch(0, List(square), 0))
+        lookDown(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getLeft(board) match {
+  def lookLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareLeft(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesLeft(square, board: Board, squares.patch(0, List(square), 0))
+        lookLeft(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getRight(board) match {
+  def lookRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareRight(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesRight(square, board: Board, squares.patch(0, List(square), 0))
+        lookRight(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getUpLeft(board) match {
+  def lookUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareUpLeft(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesUpLeft(square, board: Board, squares.patch(0, List(square), 0))
+        lookUpLeft(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getUpRight(board) match {
+  def lookUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareUpRight(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesUpRight(square, board: Board, squares.patch(0, List(square), 0))
+        lookUpRight(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getDownLeft(board) match {
+  def lookDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareDownLeft(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesDownLeft(square, board: Board, squares.patch(0, List(square), 0))
+        lookDownLeft(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 
-  def eyesDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
-    square.getDownRight(board) match {
+  def lookDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+    square.getAdjacentSquareDownRight(board) match {
       case Some(square) if !square.isFree =>
         if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
-        eyesDownRight(square, board: Board, squares.patch(0, List(square), 0))
+        lookDownRight(square, board: Board, squares.patch(0, List(square), 0))
     }
   }
 }

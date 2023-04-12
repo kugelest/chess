@@ -22,21 +22,21 @@ trait PieceInterface {
 
   def convertMove(to: String): (Char, Int, Char, Int)
 
-  def eyesUp(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookUp(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesDown(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookDown(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
-  def eyesDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
+  def lookDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square]
 
 }
 

@@ -21,43 +21,43 @@ class PieceSpec extends AnyWordSpec with Matchers {
       val board = new Board().setPiece(whiteQueen).setPiece(blackPawn1)
 
 
-      "have eyes up" in {
-        whiteQueen.eyesUp(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look up" in {
+        whiteQueen.lookUp(board.getSquare(whiteQueen.getPos).get, board) should be
         (Square("d5", None), Square("d6", None), Square("d7", None), Square("d8", Some(blackPawn1)))
       }
 
-      "have eyes down" in {
-        whiteQueen.eyesDown(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look down" in {
+        whiteQueen.lookDown(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("d4", None), Square("d3", None), Square("d2", None), Square("d1", Some(blackPawn2)))
       }
 
-      "have eyes left" in {
-        whiteQueen.eyesLeft(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look left" in {
+        whiteQueen.lookLeft(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("c4", None), Square("b4", None), Square("a4", Some(blackPawn3)))
       }
 
-      "have eyes right" in {
-        whiteQueen.eyesRight(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look right" in {
+        whiteQueen.lookRight(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("e4", None), Square("f4", None), Square("g4", None), Square("h4", Some(blackPawn4)))
       }
 
-      "have eyes up left" in {
-        whiteQueen.eyesUpLeft(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look up left" in {
+        whiteQueen.lookUpLeft(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("c5", None), Square("b6", None), Square("a7", Some(blackPawn5)))
       }
 
-      "have eyes up right" in {
-        whiteQueen.eyesUpRight(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look up right" in {
+        whiteQueen.lookUpRight(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("e5", None), Square("f6", None), Square("g7", None), Square("h8", Some(blackPawn6)))
       }
 
-      "have eyes down left" in {
-        whiteQueen.eyesDownLeft(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look down left" in {
+        whiteQueen.lookDownLeft(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("c3", None), Square("b2", None), Square("a1", Some(blackPawn7)))
       }
 
-      "have eyes down right" in {
-        whiteQueen.eyesDownRight(board.getSquare(whiteQueen.getPos).get, board) should be
+      "have look down right" in {
+        whiteQueen.lookDownRight(board.getSquare(whiteQueen.getPos).get, board) should be
         List(Square("e3", None), Square("f2", None), Square("g1", Some(blackPawn8)))
       }
     }

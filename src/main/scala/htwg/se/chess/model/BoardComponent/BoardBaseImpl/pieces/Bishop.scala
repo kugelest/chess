@@ -19,10 +19,10 @@ case class Bishop(getPos: String, getColor: Char, kind: String = "bishop") exten
   }
 
   def eyesOn(board: Board): Map[String, List[Square]] = {
-    val upLefts = eyesUpLeft(board.getSquare(getPos).get, board)
-    val upRights = eyesUpRight(board.getSquare(getPos).get, board)
-    val downLefts = eyesDownLeft(board.getSquare(getPos).get, board)
-    val downRights = eyesDownRight(board.getSquare(getPos).get, board)
+    val upLefts = lookUpLeft(board.getSquare(getPos).get, board)
+    val upRights = lookUpRight(board.getSquare(getPos).get, board)
+    val downLefts = lookDownLeft(board.getSquare(getPos).get, board)
+    val downRights = lookDownRight(board.getSquare(getPos).get, board)
     Map("upLeft" -> upLefts, "upRight" -> upRights, "downLeft" -> downLefts, "downRight" -> downRights)
   }
 
