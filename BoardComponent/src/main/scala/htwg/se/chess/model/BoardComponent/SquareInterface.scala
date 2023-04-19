@@ -9,3 +9,4 @@ trait SquareInterface {
 
   def isFree: Boolean
 }
+

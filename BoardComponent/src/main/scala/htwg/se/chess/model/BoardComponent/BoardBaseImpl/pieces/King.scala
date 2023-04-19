@@ -2,7 +2,8 @@ package htwg.se.chess.model.BoardComponent.BoardBaseImpl.pieces
 
 import htwg.se.chess.model.BoardComponent.BoardBaseImpl.{Board, Piece}
 
-case class King(getPos: String, getColor: Char, kind: String = "king") extends Piece(getPos, getColor, kind) {
+case class King(getPos: String, getColor: Char, kind: String = "king")
+    extends Piece(getPos, getColor, kind) {
 
   override def whiteMovePossible(to: String, board: Board): Boolean = true
 

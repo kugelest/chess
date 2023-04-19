@@ -1,19 +1,25 @@
 package htwg.se.chess.model.BoardComponent.BoardBaseImpl
 
 import com.google.inject.Inject
+// import htwg.se.chess.model.BoardComponent.BoardInterface
 import htwg.se.chess.model.BoardComponent.BoardInterface
 
 import scala.util.{Failure, Success, Try}
 
-case class Board @Inject()(private val squares: Vector[Vector[Square]]) extends BoardInterface {
+case class Board @Inject() (private val squares: Vector[Vector[Square]])
+    extends BoardInterface {
 
-  def this(len: Int = 8) = this(Vector.tabulate(len, len)((i, k) => Square(s"${('a' + k).toChar}${len - i}", None)))
+  def this(len: Int = 8) = this(
+    Vector.tabulate(len, len)((i, k) =>
+      Square(s"${('a' + k).toChar}${len - i}", None)
+    )
+  )
 
   val len: Int = squares.length
 
   def getSquare(pos: String): Option[Square] = {
     Try(Some(squares(len - pos(1).asDigit)(pos(0) - 'a'))) match {
-      case Success(square) => square
+      case Success(square)    => square
       case Failure(exception) => None
     }
   }
@@ -21,17 +27,29 @@ case class Board @Inject()(private val squares: Vector[Vector[Square]]) extends 
   def getPiece(pos: String): Option[Piece] = {
     getSquare(pos) match {
       case Some(square) => square.piece
-      case _ => None
+      case _            => None
     }
   }
 
-  def setPiece(piece: Piece): Board = copy(squares.updated(len - piece.getRank, squares(len - piece.getRank).updated(piece.getFile - 'a', Square(piece.getPos, Some(piece)))))
+  def setPiece(piece: Piece): Board = copy(
+    squares.updated(
+      len - piece.getRank,
+      squares(len - piece.getRank)
+        .updated(piece.getFile - 'a', Square(piece.getPos, Some(piece)))
+    )
+  )
 
-  def removePiece(pos: String): Board = copy(squares.updated(len - pos(1).asDigit, squares(len - pos(1).asDigit).updated(pos(0) - 'a', Square(pos, None))))
+  def removePiece(pos: String): Board = copy(
+    squares.updated(
+      len - pos(1).asDigit,
+      squares(len - pos(1).asDigit).updated(pos(0) - 'a', Square(pos, None))
+    )
+  )
 
   def move(from: String, to: String): Board = {
     getPiece(from) match {
-      case Some(piece) => removePiece(from).setPiece(Piece(piece.kind, to, piece.getColor))
+      case Some(piece) =>
+        removePiece(from).setPiece(Piece(piece.kind, to, piece.getColor))
       case _ => this
     }
   }
@@ -39,20 +57,21 @@ case class Board @Inject()(private val squares: Vector[Vector[Square]]) extends 
   def whiteMovePossible(from: String, to: String): Boolean = {
     getPiece(from) match {
       case Some(piece) => piece.whiteMovePossible(to, this)
-      case _ => false
+      case _           => false
     }
   }
 
   def blackMovePossible(from: String, to: String): Boolean = {
     getPiece(from) match {
       case Some(piece) => piece.blackMovePossible(to, this)
-      case _ => false
+      case _           => false
     }
   }
 
   def startPosition(): Board = {
-    //white
-    this.setPiece(Piece("rook", "a1", 'w'))
+    // white
+    this
+      .setPiece(Piece("rook", "a1", 'w'))
       .setPiece(Piece("knight", "b1", 'w'))
       .setPiece(Piece("bishop", "c1", 'w'))
       .setPiece(Piece("queen", "d1", 'w'))
@@ -68,7 +87,7 @@ case class Board @Inject()(private val squares: Vector[Vector[Square]]) extends 
       .setPiece(Piece("pawn", "f2", 'w'))
       .setPiece(Piece("pawn", "g2", 'w'))
       .setPiece(Piece("pawn", "h2", 'w'))
-      //black
+      // black
       .setPiece(Piece("rook", "a8", 'b'))
       .setPiece(Piece("knight", "b8", 'b'))
       .setPiece(Piece("bishop", "c8", 'b'))
@@ -88,8 +107,13 @@ case class Board @Inject()(private val squares: Vector[Vector[Square]]) extends 
   }
 
   override def toString: String = {
-    val filesStr = String.format("%" + (len * 2 + 3) + "s\n\n", squares.head.map(_.getFile).mkString(" "))
-    val ranksAndSquaresStr = squares.map(row => row.mkString(f"${row.head.getRank}%-4d", " ", f"${row.head.getRank}%4d"))
+    val filesStr = String.format(
+      "%" + (len * 2 + 3) + "s\n\n",
+      squares.head.map(_.getFile).mkString(" ")
+    )
+    val ranksAndSquaresStr = squares.map(row =>
+      row.mkString(f"${row.head.getRank}%-4d", " ", f"${row.head.getRank}%4d")
+    )
     ranksAndSquaresStr.mkString(filesStr, "\n", s"\n\n$filesStr")
   }
 }

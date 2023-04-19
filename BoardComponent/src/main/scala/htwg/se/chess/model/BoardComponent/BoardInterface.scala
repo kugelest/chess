@@ -20,6 +20,3 @@ trait BoardInterface {
   def getPiece(pos: String): Option[PieceInterface]
 
 }
-
-
-

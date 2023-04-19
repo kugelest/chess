@@ -4,7 +4,8 @@ import com.google.inject.Inject
 import htwg.se.chess.model.BoardComponent.BoardBaseImpl.pieces._
 import htwg.se.chess.model.BoardComponent.PieceInterface
 
-abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends PieceInterface {
+abstract class Piece @Inject() (pos: String, color: Char, kind: String)
+    extends PieceInterface {
 
   def getPos: String
 
@@ -39,12 +40,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
   //   }
   // }
 
-
-
-  def lookUp(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookUp(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareUp(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -52,10 +56,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookDown(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookDown(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareDown(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -63,10 +72,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookLeft(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -74,10 +88,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookRight(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -85,10 +104,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookUpLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookUpLeft(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareUpLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -96,10 +120,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookUpRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookUpRight(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareUpRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -107,10 +136,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookDownLeft(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookDownLeft(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareDownLeft(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -118,10 +152,15 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
     }
   }
 
-  def lookDownRight(square: Square, board: Board, squares: List[Square] = List()): List[Square] = {
+  def lookDownRight(
+      square: Square,
+      board: Board,
+      squares: List[Square] = List()
+  ): List[Square] = {
     square.getAdjacentSquareDownRight(board) match {
       case Some(square) if !square.isFree =>
-        if (!getColor.equals(square.piece.get.getColor)) squares.patch(0, List(square), 0)
+        if (!getColor.equals(square.piece.get.getColor))
+          squares.patch(0, List(square), 0)
         else squares
       case None => squares
       case Some(square) if square.isFree =>
@@ -132,12 +171,11 @@ abstract class Piece @Inject()(pos: String, color: Char, kind: String) extends P
 
 object Piece {
   def apply(kind: String, pos: String, color: Char): Piece = kind match {
-    case "king" => King(pos, color)
-    case "queen" => Queen(pos, color)
-    case "rook" => Rook(pos, color)
+    case "king"   => King(pos, color)
+    case "queen"  => Queen(pos, color)
+    case "rook"   => Rook(pos, color)
     case "knight" => Knight(pos, color)
     case "bishop" => Bishop(pos, color)
-    case "pawn" => Pawn(pos, color)
+    case "pawn"   => Pawn(pos, color)
   }
 }
-
