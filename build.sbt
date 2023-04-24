@@ -27,7 +27,10 @@ lazy val root = (project in file("."))
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.15",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.15" % "test",
     libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0",
-    libraryDependencies += "com.typesafe.play" %% "play-test" % "2.9.0-M3" % Test
+    libraryDependencies += "com.typesafe.play" %% "play-test" % "2.9.0-M3" % Test,
+    libraryDependencies += "com.typesafe.akka" %% "akka-actor-typed" % "2.7.0",
+    libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.7.0",
+    libraryDependencies += "com.typesafe.akka" %% "akka-http" % "10.5.1"
   )
 
 // name := "chess"

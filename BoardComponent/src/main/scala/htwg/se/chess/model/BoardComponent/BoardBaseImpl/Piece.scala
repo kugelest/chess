@@ -4,8 +4,7 @@ import com.google.inject.Inject
 import htwg.se.chess.model.BoardComponent.BoardBaseImpl.pieces._
 import htwg.se.chess.model.BoardComponent.PieceInterface
 
-abstract class Piece @Inject() (pos: String, color: Char, kind: String)
-    extends PieceInterface {
+abstract class Piece @Inject() (pos: String, color: Char, kind: String) extends PieceInterface {
 
   def getPos: String
 

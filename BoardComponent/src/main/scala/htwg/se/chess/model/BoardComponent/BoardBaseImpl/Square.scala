@@ -17,32 +17,18 @@ case class Square @Inject() (pos: String, piece: Option[Piece])
   def mannedByBlack: Boolean =
     if (piece.isDefined) piece.get.getColor.equals('b') else false
 
-  private def getAdjacentSquare(
-      adjacentCoord: String
-  )(board: Board): Option[Square] = {
+  private def getAdjacentSquare(adjacentCoord: String)(board: Board): Option[Square] = {
     board.getSquare(adjacentCoord)
   }
 
   def getAdjacentSquareUp = getAdjacentSquare(s"$getFile${getRank + 1}") _
   def getAdjacentSquareDown = getAdjacentSquare(s"$getFile${getRank - 1}") _
-  def getAdjacentSquareLeft = getAdjacentSquare(
-    s"${(getFile - 1).toChar}$getRank"
-  ) _
-  def getAdjacentSquareRight = getAdjacentSquare(
-    s"${(getFile + 1).toChar}$getRank"
-  ) _
-  def getAdjacentSquareUpLeft = getAdjacentSquare(
-    s"${(getFile - 1).toChar}${getRank + 1}"
-  ) _
-  def getAdjacentSquareUpRight = getAdjacentSquare(
-    s"${(getFile + 1).toChar}${getRank + 1}"
-  ) _
-  def getAdjacentSquareDownLeft = getAdjacentSquare(
-    s"${(getFile - 1).toChar}${getRank - 1}"
-  ) _
-  def getAdjacentSquareDownRight = getAdjacentSquare(
-    s"${(getFile + 1).toChar}${getRank - 1}"
-  ) _
+  def getAdjacentSquareLeft = getAdjacentSquare(s"${(getFile - 1).toChar}$getRank") _
+  def getAdjacentSquareRight = getAdjacentSquare(s"${(getFile + 1).toChar}$getRank") _
+  def getAdjacentSquareUpLeft = getAdjacentSquare(s"${(getFile - 1).toChar}${getRank + 1}") _
+  def getAdjacentSquareUpRight = getAdjacentSquare(s"${(getFile + 1).toChar}${getRank + 1}") _
+  def getAdjacentSquareDownLeft = getAdjacentSquare(s"${(getFile - 1).toChar}${getRank - 1}") _
+  def getAdjacentSquareDownRight = getAdjacentSquare(s"${(getFile + 1).toChar}${getRank - 1}") _
 
   // def getUp(board: Board): Option[Square] = {
   //   val newPos = s"$getFile${getRank + 1}"
